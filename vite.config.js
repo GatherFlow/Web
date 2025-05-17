@@ -15,7 +15,7 @@ export default defineConfig({
   preview: {
     port: 4000,
     strictPort: true,
-    allowedHosts: ['onelil.tech']
+    allowedHosts: ['gather.onelil.tech']
   },
   server: {
     port: 4000,

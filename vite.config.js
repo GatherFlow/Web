@@ -5,12 +5,23 @@ import tailwindcss from "@tailwindcss/vite";
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
 import { resolve } from "node:path";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [TanStackRouterVite({ autoCodeSplitting: true }), viteReact(), tailwindcss()],
+  base: '/',
   test: {
     globals: true,
     environment: "jsdom",
+  },
+  preview: {
+    port: 4000,
+    strictPort: true,
+    allowedHosts: ['gather.onelil.tech']
+  },
+  server: {
+    port: 4000,
+    strictPort: true,
+    host: true,
+    origin: 'http://0.0.0.0:8080'
   },
   resolve: {
     alias: {

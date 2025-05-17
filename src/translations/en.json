@@ -1,0 +1,16 @@
+{
+  "auth": {
+    "login-heading": "Login",
+    "login-submit": "Login",
+    "identifier-label": "Login or email",
+    "identifier-placeholder": "Write your login or email...",
+    "password-label": "Password",
+    "password-placeholder": "Write your password..."
+  },
+  "validation": {
+    "invalid-identifier": "Email or login is required",
+    "invalid-password": "Password is required",
+    "incorrect-identifier": "Enter correct login or email",
+    "incorrect-password": "Password must be at least 6 characters long"
+  }
+}

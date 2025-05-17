@@ -1,0 +1,16 @@
+{
+  "auth": {
+    "login-heading": "Увійти в акаунт",
+    "login-submit": "Увійти",
+    "identifier-label": "Логін або пошта",
+    "identifier-placeholder": "Введіть ваш логін або пошту...",
+    "password-label": "Пароль",
+    "password-placeholder": "Введіть ваш пароль..."
+  },
+  "validation": {
+    "invalid-identifier": "Пошта або логін обовʼязкові",
+    "invalid-password": "Пароль обовʼязковий",
+    "incorrect-identifier": "Введіть коректний логін або пошту",
+    "incorrect-password": "Пароль має містити мінімум 6 символів"
+  }
+}

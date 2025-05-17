@@ -1,0 +1,14 @@
+node_modules
+.pnpm-store
+*.log*
+dist
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.git
+.github
+.gitignore

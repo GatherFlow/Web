@@ -1,11 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { PromoPage } from '@/core/components/promo-page/page';
+import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/')({
-  component: App,
+  component: PromoPage,
 })
-
-function App() {
-  return (
-    <p>123</p>
-  )
-}

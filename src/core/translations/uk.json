@@ -1,0 +1,28 @@
+{
+  "auth": {
+    "login-heading": "Увійти в акаунт",
+    "signup-heading": "Зареєструватися",
+    "login-submit": "Увійти",
+    "signup-submit": "Зареєструватися",
+    "login-submitting": "Вхід...",
+    "signup-submitting": "Реєстрація...",
+    "login-offer": "Вже є акаунт?",
+    "signup-offer": "Немає акаунту?",
+    "email-label": "Пошта",
+    "email-placeholder": "Введіть пошту",
+    "password-label": "Пароль",
+    "password-placeholder": "Введіть ваш пароль",
+    "first-name-label": "Імʼя",
+    "first-name-placeholder": "Введіть імʼя",
+    "second-name-label": "Прізвище",
+    "second-name-placeholder": "Введіть прізвище",
+    "confirm-password-label": "Підтвердіть пароль",
+    "confirm-password-placeholder": "Введіть пароль ще раз"
+  },
+  "validation": {
+    "invalid-email": "Пошта є обовʼязковою",
+    "invalid-password": "Пароль обовʼязковий",
+    "incorrect-identifier": "Введіть коректну пошту",
+    "incorrect-password": "Пароль має містити мінімум 6 символів"
+  }
+}

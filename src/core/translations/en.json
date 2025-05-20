@@ -1,0 +1,28 @@
+{
+  "auth": {
+    "login-heading": "Login",
+    "signup-heading": "Sign up",
+    "login-submit": "Login",
+    "signup-submit": "Sign up",
+    "login-submitting": "Logging in...",
+    "signup-submitting": "Signing up...",
+    "login-offer": "Already have an account?",
+    "signup-offer": "Don't have an account?",
+    "email-label": "Email",
+    "email-placeholder": "Enter email",
+    "password-label": "Password",
+    "password-placeholder": "Enter password",
+    "first-name-label": "First Name",
+    "first-name-placeholder": "Enter first name",
+    "second-name-label": "Second Name",
+    "second-name-placeholder": "Enter second name",
+    "confirm-password-label": "Confirm password",
+    "confirm-password-placeholder": "Enter password again"
+  },
+  "validation": {
+    "invalid-email": "Email is required",
+    "invalid-password": "Password is required",
+    "incorrect-identifier": "Email should have correct format",
+    "incorrect-password": "Password must be at least 6 characters long"
+  }
+}

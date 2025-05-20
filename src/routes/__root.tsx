@@ -1,25 +1,22 @@
+import type { AuthContext } from '@/features/auth/types'
+import type { QueryClient } from '@tanstack/react-query'
 import { Outlet, createRootRouteWithContext } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
-
-import Header from '../components/Header'
-
+import React from 'react'
 import TanStackQueryLayout from '../integrations/tanstack-query/layout.tsx'
-
-import type { QueryClient } from '@tanstack/react-query'
 
 interface MyRouterContext {
   queryClient: QueryClient
+  auth: AuthContext
 }
 
 export const Route = createRootRouteWithContext<MyRouterContext>()({
   component: () => (
-    <>
-      <Header />
-
+    <React.Fragment>
       <Outlet />
       <TanStackRouterDevtools />
-
+    
       <TanStackQueryLayout />
-    </>
+    </React.Fragment>
   ),
 })

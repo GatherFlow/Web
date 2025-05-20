@@ -1,7 +1,6 @@
 import { REQUEST_METHODS } from "@/core/constants"
 import type { ApiError } from "@/core/types"
 import { getDefaultHeaders } from "@/core/utils"
-import { env } from "@/env"
 import { getCurrentUserOptions } from "@/features/users/queries"
 import { useAuthStore } from "@/features/auth/stores"
 import { useMutation, useQueryClient } from "@tanstack/react-query"
@@ -16,7 +15,7 @@ export const useSignup = () => {
   
   return useMutation({
     mutationFn: async (data: SignupValues) => {
-      const url = `${env.API_BASE_URL}/signup`
+      const url = `api/signup`
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.POST,

@@ -21,6 +21,10 @@ export default defineConfig(({ mode }) => {
       allowedHosts: ['gather.onelil.tech']
     },
     server: {
+      port: 4000,
+      strictPort: true,
+      host: true,
+      origin: "http://localhost:4000",
       proxy: {
         '/api': {
           target: env.VITE_API_BASE_URL,

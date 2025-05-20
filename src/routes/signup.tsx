@@ -1,9 +1,16 @@
 import { SignupForm } from '@/features/auth/components/SignupForm'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { Card, CardTitle } from '@/core/components/ui/card'
 import { useTranslation } from 'react-i18next'
 
 export const Route = createFileRoute('/signup')({
+  beforeLoad: async ({ context }) => {
+    const { isAuthorized } = context.auth
+
+    if (isAuthorized) {
+      throw redirect({ to: '/' })
+    }
+  },
   component: RouteComponent,
 })
 

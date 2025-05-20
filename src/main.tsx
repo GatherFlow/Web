@@ -1,23 +1,11 @@
+import '@/lib/i18n'
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
-import { RouterProvider, createRouter } from '@tanstack/react-router'
-import * as TanStackQueryProvider from './integrations/tanstack-query/root-provider.tsx'
-import { routeTree } from './routeTree.gen'
-import '@/lib/i18n'
 
-import './styles.css'
+import { InnerApp } from './App.tsx'
 import reportWebVitals from './reportWebVitals.ts'
-
-const router = createRouter({
-  routeTree,
-  context: {
-    ...TanStackQueryProvider.getContext(),
-  },
-  defaultPreload: 'intent',
-  scrollRestoration: true,
-  defaultStructuralSharing: true,
-  defaultPreloadStaleTime: 0,
-})
+import { router } from './router.tsx'
+import './styles.css'
 
 declare module '@tanstack/react-router' {
   interface Register {
@@ -29,11 +17,10 @@ const rootElement = document.getElementById('app')
 
 if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
+
   root.render(
     <StrictMode>
-      <TanStackQueryProvider.Provider>
-        <RouterProvider router={router} />
-      </TanStackQueryProvider.Provider>
+      <InnerApp />
     </StrictMode>,
   )
 }

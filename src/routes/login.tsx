@@ -1,9 +1,16 @@
 import { LoginForm } from '@/features/auth/components/LoginForm'
 import { Card, CardTitle } from '@/core/components/ui/card'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, redirect } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 
 export const Route = createFileRoute('/login')({
+  beforeLoad: async ({ context }) => {
+    const { isAuthorized } = context.auth
+
+    if (isAuthorized) {
+      throw redirect({ to: '/' })
+    }
+  },
   component: RouteComponent,
 })
 

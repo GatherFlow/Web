@@ -1,0 +1,143 @@
+import { useAppForm } from "@/core/components/ui/tanstack-form"
+import { signupSchema } from "../schemas"
+import { useSignup } from "../mutations/useSignup"
+import React from "react"
+import { Input } from "@/core/components/ui/input"
+import { useTranslation } from "react-i18next"
+import { Button } from "@/core/components/ui/button"
+import { Link } from "@tanstack/react-router"
+
+export const SignupForm: React.FC = () => {
+  const { t } = useTranslation()
+  const { mutateAsync, isPending, isError, error } = useSignup()
+
+  const form = useAppForm({
+    validators: { onSubmit: signupSchema },
+    defaultValues: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    },
+    onSubmit: async ({ value }) => {
+      await mutateAsync(value)
+    }
+  })
+
+  const handleSubmit = React.useCallback((e: React.FormEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    form.handleSubmit()
+  }, [form])
+
+  return (
+    <form.AppForm>
+      <form className="w-full space-y-3" onSubmit={handleSubmit}>
+        <div className="inline-flex gap-3">
+          <form.AppField name="firstName">
+            {(field) => (
+              <field.FormItem>
+                <field.FormLabel>{t('auth.first-name-label')}</field.FormLabel>
+                <field.FormControl>
+                  <Input
+                    type="text"
+                    value={field.state.value}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    onBlur={field.handleBlur}
+                    placeholder={t('auth.first-name-placeholder')}
+                    disabled={isPending}
+                  />
+                </field.FormControl>
+                <field.FormMessage />
+              </field.FormItem>
+            )}
+          </form.AppField>
+          <form.AppField name="lastName">
+            {(field) => (
+              <field.FormItem>
+                <field.FormLabel>{t('auth.second-name-label')}</field.FormLabel>
+                <field.FormControl>
+                  <Input
+                    type="text"
+                    value={field.state.value}
+                    onChange={(e) => field.handleChange(e.target.value)}
+                    onBlur={field.handleBlur}
+                    placeholder={t('auth.second-name-placeholder')}
+                    disabled={isPending}
+                  />
+                </field.FormControl>
+                <field.FormMessage />
+              </field.FormItem>
+            )}
+          </form.AppField>
+        </div>
+        <form.AppField name="email">
+          {(field) => (
+            <field.FormItem>
+              <field.FormLabel>{t('auth.email-label')}</field.FormLabel>
+              <field.FormControl>
+                <Input
+                  type="text"
+                  value={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  onBlur={field.handleBlur}
+                  placeholder={t('auth.email-placeholder')}
+                  disabled={isPending}
+                />
+              </field.FormControl>
+              <field.FormMessage />
+            </field.FormItem>
+          )}
+        </form.AppField>
+        <form.AppField name="password">
+          {(field) => (
+            <field.FormItem>
+              <field.FormLabel>{t('auth.password-label')}</field.FormLabel>
+              <field.FormControl>
+                <Input
+                  type="text"
+                  value={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  onBlur={field.handleBlur}
+                  placeholder={t('auth.password-placeholder')}
+                  disabled={isPending}
+                />
+              </field.FormControl>
+              <field.FormMessage />
+            </field.FormItem>
+          )}
+        </form.AppField>
+        <form.AppField name="confirmPassword">
+          {(field) => (
+            <field.FormItem>
+              <field.FormLabel>{t('auth.confirm-password-label')}</field.FormLabel>
+              <field.FormControl>
+                <Input
+                  type="text"
+                  value={field.state.value}
+                  onChange={(e) => field.handleChange(e.target.value)}
+                  onBlur={field.handleBlur}
+                  placeholder={t('auth.confirm-password-placeholder')}
+                  disabled={isPending}
+                />
+              </field.FormControl>
+              <field.FormMessage />
+            </field.FormItem>
+          )}
+        </form.AppField>
+        {isError && <p className="text-sm text-destructive">{error.message}</p>}
+        <Button
+          className="w-full"
+          disabled={isPending}
+        >
+          {t('auth.signup-submit')}
+        </Button>
+        <div className="inline-flex justify-center w-full gap-1 text-muted-foreground">
+          <p>{t('auth.login-offer')}</p>
+          <Link className="underline" to="/login">{t('auth.login-submit')}</Link>
+        </div>
+      </form>
+    </form.AppForm>
+  )
+}

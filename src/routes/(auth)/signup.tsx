@@ -6,12 +6,12 @@ import React from 'react'
 import { Head } from '@unhead/react'
 import { TITLE_TEMPLATE } from '@/core/constants'
 
-export const Route = createFileRoute('/signup')({
+export const Route = createFileRoute('/(auth)/signup')({
   beforeLoad: async ({ context }) => {
     const { isAuthorized } = context.auth
 
     if (isAuthorized) {
-      throw redirect({ to: '/' })
+      throw redirect({ to: '/dashboard' })
     }
   },
   component: RouteComponent,

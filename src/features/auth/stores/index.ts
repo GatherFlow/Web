@@ -18,7 +18,7 @@ export const useAuthStore = create<AuthContext>()(
         set(() => ({
           user,
           isAuthorized: !!user,
-          isAdmin: user?.role === 'admin',
+          isAdmin: user?.role === 'admin' || user?.role === 'supervisor',
         })),
     }),
     {

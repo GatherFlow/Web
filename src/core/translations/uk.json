@@ -1,97 +1,97 @@
 {
   "promo": {
     "sections": {
-      "features": "Features",
-      "pricing": "Pricing",
-      "newsletter": "Newsletter"
+      "features": "Можливості",
+      "pricing": "Ціни",
+      "newsletter": "Розсилка"
     },
     "hero": {
       "badge": {
-        "accent": "New",
-        "text": "Launching our mobile app soon!"
+        "accent": "Нове",
+        "text": "Мобільний застосунок вже скоро!"
       },
       "catchphrase": {
-        "accent": "With Ease",
-        "text": "Organize Events"
+        "accent": "Легко",
+        "text": "Організовуйте події"
       },
-      "description": "GatherFlow simplifies event planning, attendee management, and engagement. Create memorable experiences without the stress.",
-      "action": "Get Started",
-      "trust-section": "Event organizers trust GatherFlow"
+      "description": "GatherFlow спрощує планування заходів, керування учасниками та взаємодію з ними. Створюйте незабутні події без стресу.",
+      "action": "Почати",
+      "trust-section": "Організатори подій довіряють GatherFlow"
     },
     "logos": {
-      "title": "Trusted by event organizers worldwide"
+      "title": "Нам довіряють організатори подій по всьому світу"
     },
     "features": {
-      "title": "Powerful Features for Seamless Events",
-      "description": "Everything you need to plan, manage, and execute successful events of any size",
+      "title": "Потужні можливості для ідеальних подій",
+      "description": "Усе необхідне для планування, керування та реалізації подій будь-якого масштабу",
       "list": [
         {
-          "title": "Event Planning",
-          "description": "Intuitive tools for scheduling, venue selection, and timeline management"
+          "title": "Планування подій",
+          "description": "Інтуїтивні іструменти для планування часу, місця та таймлайну"
         },
         {
-          "title": "Attendee Management",
-          "description": "Seamless registration, check-in, and attendee communication"
+          "title": "Керування учасниками",
+          "description": "Проста реєстрація, підтвердження та спілкування з учасниками"
         },
         {
-          "title": "Analytics Dashboard",
-          "description": "Comprehensive insights on attendance, engagement, and ROI"
+          "title": "Панель аналітики",
+          "description": "Детальна аналітика відвідування, залучення та рентабельності"
         },
         {
-          "title": "Real-time Updates",
-          "description": "Instant notifications and schedule changes for all participants"
+          "title": "Оновлення в реальному часі",
+          "description": "Миттєві сповіщення та зміни у розкладі для всіх учасників"
         }
       ]
     },
     "pricing": {
-      "title": "Simple, Transparent Pricing",
-      "description": "Choose the plan that fits your event needs",
-      "popular": "Popular",
-      "month": "month",
-      "action": "Get Started",
+      "title": "Прості та прозорі тарифи",
+      "description": "Оберіть план, що відповідає вашим потребам",
+      "popular": "Популярний",
+      "month": "місяць",
+      "action": "Почати",
       "plans": [
         {
-          "title": "Free",
-          "description": "Perfect for small events and meetups",
+          "title": "Безкоштовний",
+          "description": "Ідеальний для невеликих заходів та зустрічей",
           "features": [
-            "Up to 100 attendees",
-            "Announce 2 events per month",
-            "Standard support"
+            "До 100 учасників",
+            "До 2-х подій на місяць",
+            "Стандартна підтримка"
           ]
         },
         {
-          "title": "Advanced",
-          "description": "Ideal for medium-sized events",
+          "title": "Розширений",
+          "description": "Оптимальний для подій середнього масштабу",
           "features": [
-            "Up to 500 attendees",
-            "Announce 5 events per month",
-            "Priority support"
+            "До 500 учасників",
+            "До 5-ти подій на місяць",
+            "Пріорітетна підтримка"
           ]
         },
         {
-          "title": "Creator",
-          "description": "For large conferences and events",
+          "title": "Творець",
+          "description": "Для великих конференцій та заходів",
           "features": [
-            "Unlimited attendees",
-            "Unlimited events per month",
-            "Dedicated account manager"
+            "Необмежена кількість учасників",
+            "Необмежена кількість подій на місяць",
+            "Персональний менеджер"
           ]
         }
       ]
     },
     "cta": {
-      "title": "Ready to Transform Your Event Experience?",
-      "description": "Join thousands of event organizers who've simplified their workflow with GatherFlow.",
-      "action": "Get Started",
-      "subtitle": "Sign up for our newsletter",
-      "subscribe": "Subscribe",
-      "small": "Get the latest updates, tips, and exclusive offers directly to your inbox."
+      "title": "Готові змінити ваш досвід організації подій?",
+      "description": "Приєднуйтесь до тисяч організаторів, які вже спростили свою роботу з GatherFlow.",
+      "action": "Почати",
+      "subtitle": "Підпишіться на нашу розсилку",
+      "subscribe": "Підписатися",
+      "small": "Отримуйте останні новини, поради та ексклюзивні пропозиції прямо на вашу пошту."
     },
     "footer": {
-      "all-rights-reserved": "All rights reserved",
-      "privacy-policy": "Privacy Policy",
-      "terms-of-service": "Terms of Service",
-      "cookie-policy": "Cookie Policy"
+      "all-rights-reserved": "Усі права захищені",
+      "privacy-policy": "Політика конфіденційності",
+      "terms-of-service": "Умови користування",
+      "cookie-policy": "Політика використання файлів cookie"
     }
   },
   "auth": {

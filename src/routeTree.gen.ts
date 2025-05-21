@@ -13,6 +13,10 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as DashboardRouteImport } from './routes/dashboard/route'
 import { Route as IndexImport } from './routes/index'
+import { Route as DashboardIndexImport } from './routes/dashboard/index'
+import { Route as DashboardProfileImport } from './routes/dashboard/profile'
+import { Route as DashboardPrivacyImport } from './routes/dashboard/privacy'
+import { Route as DashboardEventsImport } from './routes/dashboard/events'
 import { Route as authSignupImport } from './routes/(auth)/signup'
 import { Route as authLoginImport } from './routes/(auth)/login'
 
@@ -28,6 +32,30 @@ const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardIndexRoute = DashboardIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+
+const DashboardProfileRoute = DashboardProfileImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+
+const DashboardPrivacyRoute = DashboardPrivacyImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+
+const DashboardEventsRoute = DashboardEventsImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => DashboardRouteRoute,
 } as any)
 
 const authSignupRoute = authSignupImport.update({
@@ -74,52 +102,133 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authSignupImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/events': {
+      id: '/dashboard/events'
+      path: '/events'
+      fullPath: '/dashboard/events'
+      preLoaderRoute: typeof DashboardEventsImport
+      parentRoute: typeof DashboardRouteImport
+    }
+    '/dashboard/privacy': {
+      id: '/dashboard/privacy'
+      path: '/privacy'
+      fullPath: '/dashboard/privacy'
+      preLoaderRoute: typeof DashboardPrivacyImport
+      parentRoute: typeof DashboardRouteImport
+    }
+    '/dashboard/profile': {
+      id: '/dashboard/profile'
+      path: '/profile'
+      fullPath: '/dashboard/profile'
+      preLoaderRoute: typeof DashboardProfileImport
+      parentRoute: typeof DashboardRouteImport
+    }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexImport
+      parentRoute: typeof DashboardRouteImport
+    }
   }
 }
 
 // Create and export the route tree
 
+interface DashboardRouteRouteChildren {
+  DashboardEventsRoute: typeof DashboardEventsRoute
+  DashboardPrivacyRoute: typeof DashboardPrivacyRoute
+  DashboardProfileRoute: typeof DashboardProfileRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+}
+
+const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
+  DashboardEventsRoute: DashboardEventsRoute,
+  DashboardPrivacyRoute: DashboardPrivacyRoute,
+  DashboardProfileRoute: DashboardProfileRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+}
+
+const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
+  DashboardRouteRouteChildren,
+)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRouteRoute
+  '/dashboard': typeof DashboardRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
+  '/dashboard/events': typeof DashboardEventsRoute
+  '/dashboard/privacy': typeof DashboardPrivacyRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRouteRoute
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
+  '/dashboard/events': typeof DashboardEventsRoute
+  '/dashboard/privacy': typeof DashboardPrivacyRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard': typeof DashboardIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/dashboard': typeof DashboardRouteRoute
+  '/dashboard': typeof DashboardRouteRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/signup': typeof authSignupRoute
+  '/dashboard/events': typeof DashboardEventsRoute
+  '/dashboard/privacy': typeof DashboardPrivacyRoute
+  '/dashboard/profile': typeof DashboardProfileRoute
+  '/dashboard/': typeof DashboardIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/login' | '/signup'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/login'
+    | '/signup'
+    | '/dashboard/events'
+    | '/dashboard/privacy'
+    | '/dashboard/profile'
+    | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/login' | '/signup'
-  id: '__root__' | '/' | '/dashboard' | '/(auth)/login' | '/(auth)/signup'
+  to:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/dashboard/events'
+    | '/dashboard/privacy'
+    | '/dashboard/profile'
+    | '/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/(auth)/login'
+    | '/(auth)/signup'
+    | '/dashboard/events'
+    | '/dashboard/privacy'
+    | '/dashboard/profile'
+    | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRouteRoute: typeof DashboardRouteRoute
+  DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
   authLoginRoute: typeof authLoginRoute
   authSignupRoute: typeof authSignupRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRouteRoute: DashboardRouteRoute,
+  DashboardRouteRoute: DashboardRouteRouteWithChildren,
   authLoginRoute: authLoginRoute,
   authSignupRoute: authSignupRoute,
 }
@@ -144,13 +253,35 @@ export const routeTree = rootRoute
       "filePath": "index.tsx"
     },
     "/dashboard": {
-      "filePath": "dashboard/route.tsx"
+      "filePath": "dashboard/route.tsx",
+      "children": [
+        "/dashboard/events",
+        "/dashboard/privacy",
+        "/dashboard/profile",
+        "/dashboard/"
+      ]
     },
     "/(auth)/login": {
       "filePath": "(auth)/login.tsx"
     },
     "/(auth)/signup": {
       "filePath": "(auth)/signup.tsx"
+    },
+    "/dashboard/events": {
+      "filePath": "dashboard/events.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/privacy": {
+      "filePath": "dashboard/privacy.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/profile": {
+      "filePath": "dashboard/profile.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/": {
+      "filePath": "dashboard/index.tsx",
+      "parent": "/dashboard"
     }
   }
 }

@@ -1,14 +1,21 @@
-import { DashboardLayout } from '@/layouts/DashboardLayout'
-import { createFileRoute } from '@tanstack/react-router'
+import { DashboardLayout } from '@/layouts/dashboard'
+import { Outlet, createFileRoute, redirect } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/dashboard')({
+  beforeLoad: ({ context }) => {
+    const { isAuthorized } = context.auth
+
+    if (!isAuthorized) {
+      return redirect({ to: '/' })
+    }
+  },
   component: Page,
 })
 
 function Page() {
   return (
     <DashboardLayout>
-      <p>123</p>
+      <Outlet />
     </DashboardLayout>
   )
 }

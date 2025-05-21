@@ -6,7 +6,7 @@ export const DashboardLayout: React.FC<React.PropsWithChildren> = ({ children })
   return (
     <SidebarProvider>
       <DashboardSidebar />
-      <main className="flex flex-col p-4">
+      <main className="flex flex-col py-5 w-[700px] mx-auto gap-4">
         {children}
       </main>
     </SidebarProvider>

@@ -1,14 +1,14 @@
-import { useAppForm } from "@/core/components/ui/tanstack-form"
-import { signupSchema } from "../schemas"
-import { useSignup } from "../mutations/useSignup"
-import React from "react"
-import { Input } from "@/core/components/ui/input"
-import { useTranslation } from "react-i18next"
 import { Button } from "@/core/components/ui/button"
+import { Input } from "@/core/components/ui/input"
+import { useAppForm } from "@/core/components/ui/tanstack-form"
 import { Link } from "@tanstack/react-router"
+import React from "react"
+import { useTranslation } from "react-i18next"
+import { useSignup } from "../mutations/useSignup"
+import { signupSchema } from "../schemas"
 
 export const SignupForm: React.FC = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const { mutateAsync, isPending, isError, error } = useSignup()
 
   const form = useAppForm({
@@ -18,7 +18,8 @@ export const SignupForm: React.FC = () => {
       lastName: '',
       email: '',
       password: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      language: i18n.language
     },
     onSubmit: async ({ value }) => {
       await mutateAsync(value)
@@ -96,7 +97,7 @@ export const SignupForm: React.FC = () => {
               <field.FormLabel>{t('auth.password-label')}</field.FormLabel>
               <field.FormControl>
                 <Input
-                  type="text"
+                  type="password"
                   value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
@@ -114,7 +115,7 @@ export const SignupForm: React.FC = () => {
               <field.FormLabel>{t('auth.confirm-password-label')}</field.FormLabel>
               <field.FormControl>
                 <Input
-                  type="text"
+                  type="password"
                   value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}

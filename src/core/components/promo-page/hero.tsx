@@ -1,7 +1,10 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
+import { useTranslation } from "react-i18next";
 
 export const PromoHeroSection = () => {
+  const { t } = useTranslation()
+
   const avatarUrls = [
     'https://mighty.tools/mockmind-api/content/human/128.jpg',
     'https://mighty.tools/mockmind-api/content/human/92.jpg',
@@ -21,26 +24,23 @@ export const PromoHeroSection = () => {
             <div className="space-y-6">
               <div className="inline-flex items-center rounded-full border border-gold-200 bg-white px-3 py-1 text-sm dark:border-gold-800 dark:bg-gold-950/40">
                 <span className="mr-1 rounded-full bg-gold-500 px-1.5 py-0.5 text-xs text-black font-medium">
-                  New
+                  {t('promo.hero.badge.accent')}
                 </span>
-                <span className="text-xs">Launching our mobile app soon!</span>
+                <span className="text-xs">{t('promo.hero.badge.text')}</span>
               </div>
               <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-                <span className="block">Organize Events</span>
+                <span className="block">{t('promo.hero.catchphrase.text')}</span>
                 <span className="block bg-gradient-to-r from-gold-500 to-gold-700 bg-clip-text text-transparent">
-                  With Ease
+                  {t('promo.hero.catchphrase.accent')}
                 </span>
               </h1>
               <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                GatherFlow simplifies event planning, attendee management, and engagement. Create memorable
-                experiences without the stress.
+                {t('promo.hero.description')}
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-              >
-                Get Started
+              <Button size="lg">
+                {t('promo.hero.action')}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>
@@ -62,7 +62,7 @@ export const PromoHeroSection = () => {
                 ))}
               </div>
               <div>
-                Event organizers trust GatherFlow
+                {t('promo.hero.trust-section')}
               </div>
             </div>
           </div>

@@ -27,11 +27,10 @@ function RouteComponent() {
       </Head>
       <main className='flex flex-col w-full h-dvh items-center justify-center'>
         <Card className='w-[400px] items-center p-4'>
-            <CardTitle>{t('auth.signup-heading')}</CardTitle>
+          <CardTitle>{t('auth.signup.heading')}</CardTitle>
           <SignupForm />
         </Card>
       </main>
     </React.Fragment>
   )
 }
-

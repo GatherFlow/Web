@@ -131,11 +131,11 @@ export const SignupForm: React.FC = () => {
           className="w-full"
           disabled={isPending}
         >
-          {t('auth.signup-submit')}
+          {isPending ? t('auth.signup.submitting') : t('auth.signup.submit')}
         </Button>
         <div className="inline-flex justify-center w-full gap-1 text-muted-foreground">
-          <p>{t('auth.login-offer')}</p>
-          <Link className="underline" to="/login">{t('auth.login-submit')}</Link>
+          <p>{t('auth.login.offer')}</p>
+          <Link className="underline" to="/login">{t('auth.login.submit')}</Link>
         </div>
       </form>
     </form.AppForm>

@@ -27,7 +27,7 @@ function RouteComponent() {
       </Head>
       <main className='flex flex-col w-full h-dvh items-center justify-center'>
         <Card className='w-[360px] items-center p-4'>
-            <CardTitle>{t('auth.login-heading')}</CardTitle>
+            <CardTitle>{t('auth.login.heading')}</CardTitle>
           <LoginForm />
         </Card>
       </main>

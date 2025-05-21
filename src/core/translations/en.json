@@ -1,13 +1,112 @@
 {
+  "promo": {
+    "sections": {
+      "features": "Features",
+      "pricing": "Pricing",
+      "newsletter": "Newsletter"
+    },
+    "hero": {
+      "badge": {
+        "accent": "New",
+        "text": "Launching our mobile app soon!"
+      },
+      "catchphrase": {
+        "accent": "With Ease",
+        "text": "Organize Events"
+      },
+      "description": "GatherFlow simplifies event planning, attendee management, and engagement. Create memorable experiences without the stress.",
+      "action": "Get Started",
+      "trust-section": "Event organizers trust GatherFlow"
+    },
+    "logos": {
+      "title": "Trusted by event organizers worldwide"
+    },
+    "features": {
+      "title": "Powerful Features for Seamless Events",
+      "description": "Everything you need to plan, manage, and execute successful events of any size",
+      "list": [
+        {
+          "title": "Event Planning",
+          "description": "Intuitive tools for scheduling, venue selection, and timeline management"
+        },
+        {
+          "title": "Attendee Management",
+          "description": "Seamless registration, check-in, and attendee communication"
+        },
+        {
+          "title": "Analytics Dashboard",
+          "description": "Comprehensive insights on attendance, engagement, and ROI"
+        },
+        {
+          "title": "Real-time Updates",
+          "description": "Instant notifications and schedule changes for all participants"
+        }
+      ]
+    },
+    "pricing": {
+      "title": "Simple, Transparent Pricing",
+      "description": "Choose the plan that fits your event needs",
+      "popular": "Popular",
+      "month": "month",
+      "action": "Get Started",
+      "plans": [
+        {
+          "title": "Free",
+          "description": "Perfect for small events and meetups",
+          "features": [
+            "Up to 100 attendees",
+            "Announce 2 events per month",
+            "Standard support"
+          ]
+        },
+        {
+          "title": "Advanced",
+          "description": "Ideal for medium-sized events",
+          "features": [
+            "Up to 500 attendees",
+            "Announce 5 events per month",
+            "Priority support"
+          ]
+        },
+        {
+          "title": "Creator",
+          "description": "For large conferences and events",
+          "features": [
+            "Unlimited attendees",
+            "Unlimited events per month",
+            "Dedicated account manager"
+          ]
+        }
+      ]
+    },
+    "cta": {
+      "title": "Ready to Transform Your Event Experience?",
+      "description": "Join thousands of event organizers who've simplified their workflow with GatherFlow.",
+      "action": "Get Started",
+      "subtitle": "Sign up for our newsletter",
+      "subscribe": "Subscribe",
+      "small": "Get the latest updates, tips, and exclusive offers directly to your inbox."
+    },
+    "footer": {
+      "all-rights-reserved": "All rights reserved",
+      "privacy-policy": "Privacy Policy",
+      "terms-of-service": "Terms of Service",
+      "cookie-policy": "Cookie Policy"
+    }
+  },
   "auth": {
-    "login-heading": "Login",
-    "signup-heading": "Sign up",
-    "login-submit": "Login",
-    "signup-submit": "Sign up",
-    "login-submitting": "Logging in...",
-    "signup-submitting": "Signing up...",
-    "login-offer": "Already have an account?",
-    "signup-offer": "Don't have an account?",
+    "login": {
+      "heading": "Login",
+      "submit": "Login",
+      "submitting": "Logging in...",
+      "offer": "Already have an account?"
+    },
+    "signup": {
+      "heading": "Sign up",
+      "submit": "Sign up",
+      "submitting": "Signing up...",
+      "offer": "Don't have an account?"
+    },
     "email-label": "Email",
     "email-placeholder": "Enter email",
     "password-label": "Password",
@@ -24,5 +123,12 @@
     "invalid-password": "Password is required",
     "incorrect-identifier": "Email should have correct format",
     "incorrect-password": "Password must be at least 6 characters long"
+  },
+  "change-locale": {
+    "label": "Languages",
+    "locales": [
+      "English",
+      "Ukrainian"
+    ]
   }
 }

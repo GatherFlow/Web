@@ -95,14 +95,18 @@
     }
   },
   "auth": {
-    "login-heading": "Увійти в акаунт",
-    "signup-heading": "Зареєструватися",
-    "login-submit": "Увійти",
-    "signup-submit": "Зареєструватися",
-    "login-submitting": "Вхід...",
-    "signup-submitting": "Реєстрація...",
-    "login-offer": "Вже є акаунт?",
-    "signup-offer": "Немає акаунту?",
+    "login": {
+      "heading": "Увійти в акаунт",
+      "submit": "Увійти",
+      "submitting": "Вхід...",
+      "offer": "Вже є акаунт?"
+    },
+    "signup": {
+      "heading": "Зареєструватися",
+      "submit": "Зареєструватися",
+      "submitting": "Реєстрація...",
+      "offer": "Немає акаунту?"
+    },
     "email-label": "Пошта",
     "email-placeholder": "Введіть пошту",
     "password-label": "Пароль",

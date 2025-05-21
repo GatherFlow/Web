@@ -95,14 +95,18 @@
     }
   },
   "auth": {
-    "login-heading": "Login",
-    "signup-heading": "Sign up",
-    "login-submit": "Login",
-    "signup-submit": "Sign up",
-    "login-submitting": "Logging in...",
-    "signup-submitting": "Signing up...",
-    "login-offer": "Already have an account?",
-    "signup-offer": "Don't have an account?",
+    "login": {
+      "heading": "Login",
+      "submit": "Login",
+      "submitting": "Logging in...",
+      "offer": "Already have an account?"
+    },
+    "signup": {
+      "heading": "Sign up",
+      "submit": "Sign up",
+      "submitting": "Signing up...",
+      "offer": "Don't have an account?"
+    },
     "email-label": "Email",
     "email-placeholder": "Enter email",
     "password-label": "Password",

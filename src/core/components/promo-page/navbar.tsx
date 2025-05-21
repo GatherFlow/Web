@@ -19,7 +19,7 @@ export const PromoNavbar: React.FC = () => {
       <div className="container mx-auto px-8 2xl:max-w-[1400px] flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <Logo className="size-8" />
-          <span className="text-xl font-bold">GatherFlow</span>
+          <span className="text-xl font-bold max-lg:hidden">GatherFlow</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6">
           {links.map((link, index) => (
@@ -31,10 +31,10 @@ export const PromoNavbar: React.FC = () => {
         <div className="flex items-center gap-4">
           <LanguageDropdown />
           <Link className={buttonVariants({ variant: 'outline', size: 'sm'})} to="/login">
-            {t('auth.login-heading')}
+            {t('auth.login.submit')}
           </Link>
           <Link className={buttonVariants({ size: 'sm' })} to="/signup">
-            {t('auth.signup-heading')}
+            {t('auth.signup.submit')}
           </Link>
         </div>
       </div>

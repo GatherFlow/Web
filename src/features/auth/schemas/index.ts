@@ -24,7 +24,8 @@ const signupSchema = loginSchema
         required_error: i18n.t('validation.invalid-password'),
       })
       .min(6, i18n.t('validation.incorrect-password'))
-      .trim()
+      .trim(),
+    language: z.string()
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: i18n.t('validation.paswords-dont-match'),

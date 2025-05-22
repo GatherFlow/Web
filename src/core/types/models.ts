@@ -1,3 +1,4 @@
+type Language = 'en' | 'uk'
 type Role = 'user' | 'admin' | 'supervisor'
 
 interface PublicUser {
@@ -9,6 +10,7 @@ interface PublicUser {
   isVerified: boolean
   dateOfBirth: Date | null
   avatar: string
+  language: Language
 }
 
 export type { PublicUser }

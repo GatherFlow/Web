@@ -1,19 +1,14 @@
-import { SignupForm } from '@/features/auth/components/SignupForm'
-import { createFileRoute, redirect } from '@tanstack/react-router'
 import { Card, CardTitle } from '@/core/components/ui/card'
-import { useTranslation } from 'react-i18next'
-import React from 'react'
-import { Head } from '@unhead/react'
 import { TITLE_TEMPLATE } from '@/core/constants'
+import { canAccessAuth } from '@/core/middlewares/canAccessAuth'
+import { SignupForm } from '@/features/auth/components/SignupForm'
+import { createFileRoute } from '@tanstack/react-router'
+import { Head } from '@unhead/react'
+import React from 'react'
+import { useTranslation } from 'react-i18next'
 
-export const Route = createFileRoute('/signup')({
-  beforeLoad: async ({ context }) => {
-    const { isAuthorized } = context.auth
-
-    if (isAuthorized) {
-      throw redirect({ to: '/' })
-    }
-  },
+export const Route = createFileRoute('/(auth)/signup')({
+  beforeLoad: ({ context }) => canAccessAuth(context.auth),
   component: RouteComponent,
 })
 

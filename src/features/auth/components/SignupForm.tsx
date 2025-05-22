@@ -1,7 +1,6 @@
 import { Button } from "@/core/components/ui/button"
 import { Input } from "@/core/components/ui/input"
 import { useAppForm } from "@/core/components/ui/tanstack-form"
-import { Link } from "@tanstack/react-router"
 import React from "react"
 import { useTranslation } from "react-i18next"
 import { useSignup } from "../mutations/useSignup"

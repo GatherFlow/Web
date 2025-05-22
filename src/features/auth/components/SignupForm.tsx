@@ -35,10 +35,10 @@ export const SignupForm: React.FC = () => {
   return (
     <form.AppForm>
       <form className="w-full space-y-3" onSubmit={handleSubmit}>
-        <div className="inline-flex gap-3">
+        <div className="inline-flex w-full gap-3">
           <form.AppField name="firstName">
             {(field) => (
-              <field.FormItem>
+              <field.FormItem className="w-1/2">
                 <field.FormLabel>{t('auth.first-name-label')}</field.FormLabel>
                 <field.FormControl>
                   <Input
@@ -56,7 +56,7 @@ export const SignupForm: React.FC = () => {
           </form.AppField>
           <form.AppField name="lastName">
             {(field) => (
-              <field.FormItem>
+              <field.FormItem className="w-1/2">
                 <field.FormLabel>{t('auth.second-name-label')}</field.FormLabel>
                 <field.FormControl>
                   <Input
@@ -134,10 +134,6 @@ export const SignupForm: React.FC = () => {
         >
           {isPending ? t('auth.signup.submitting') : t('auth.signup.submit')}
         </Button>
-        <div className="inline-flex justify-center w-full gap-1 text-muted-foreground">
-          <p>{t('auth.login.offer')}</p>
-          <Link className="underline" to="/login">{t('auth.login.submit')}</Link>
-        </div>
       </form>
     </form.AppForm>
   )

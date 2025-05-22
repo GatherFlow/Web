@@ -1,5 +1,4 @@
-import { useAuthStore } from '@/features/auth/stores'
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useRouteContext } from '@tanstack/react-router'
 import React from 'react'
 
 export const Route = createFileRoute('/dashboard/')({
@@ -7,7 +6,9 @@ export const Route = createFileRoute('/dashboard/')({
 })
 
 function RouteComponent() {
-  const user = useAuthStore((select) => select.user)
+  const ctx = useRouteContext({ from: '/dashboard' })
+  
+  const { user } = ctx.auth
 
   return (
     <React.Fragment>

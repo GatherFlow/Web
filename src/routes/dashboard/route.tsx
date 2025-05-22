@@ -1,14 +1,9 @@
+import { isAuthorized } from '@/core/middlewares/isAuthorized'
 import { DashboardLayout } from '@/layouts/dashboard'
-import { Outlet, createFileRoute, redirect } from '@tanstack/react-router'
+import { Outlet, createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/dashboard')({
-  beforeLoad: ({ context }) => {
-    const { isAuthorized } = context.auth
-
-    if (!isAuthorized) {
-      return redirect({ to: '/' })
-    }
-  },
+  beforeLoad: ({ context }) => isAuthorized(context.auth),
   component: Page,
 })
 

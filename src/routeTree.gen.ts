@@ -17,6 +17,7 @@ import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as DashboardProfileImport } from './routes/dashboard/profile'
 import { Route as DashboardPrivacyImport } from './routes/dashboard/privacy'
 import { Route as DashboardEventsImport } from './routes/dashboard/events'
+import { Route as DashboardBillingImport } from './routes/dashboard/billing'
 import { Route as authSignupImport } from './routes/(auth)/signup'
 import { Route as authLoginImport } from './routes/(auth)/login'
 
@@ -55,6 +56,12 @@ const DashboardPrivacyRoute = DashboardPrivacyImport.update({
 const DashboardEventsRoute = DashboardEventsImport.update({
   id: '/events',
   path: '/events',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+
+const DashboardBillingRoute = DashboardBillingImport.update({
+  id: '/billing',
+  path: '/billing',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
 
@@ -102,6 +109,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authSignupImport
       parentRoute: typeof rootRoute
     }
+    '/dashboard/billing': {
+      id: '/dashboard/billing'
+      path: '/billing'
+      fullPath: '/dashboard/billing'
+      preLoaderRoute: typeof DashboardBillingImport
+      parentRoute: typeof DashboardRouteImport
+    }
     '/dashboard/events': {
       id: '/dashboard/events'
       path: '/events'
@@ -136,6 +150,7 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 interface DashboardRouteRouteChildren {
+  DashboardBillingRoute: typeof DashboardBillingRoute
   DashboardEventsRoute: typeof DashboardEventsRoute
   DashboardPrivacyRoute: typeof DashboardPrivacyRoute
   DashboardProfileRoute: typeof DashboardProfileRoute
@@ -143,6 +158,7 @@ interface DashboardRouteRouteChildren {
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
+  DashboardBillingRoute: DashboardBillingRoute,
   DashboardEventsRoute: DashboardEventsRoute,
   DashboardPrivacyRoute: DashboardPrivacyRoute,
   DashboardProfileRoute: DashboardProfileRoute,
@@ -158,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
+  '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
@@ -168,6 +185,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
+  '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
@@ -180,6 +198,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/signup': typeof authSignupRoute
+  '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
@@ -193,6 +212,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/signup'
+    | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
@@ -202,6 +222,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/signup'
+    | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
@@ -212,6 +233,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/(auth)/login'
     | '/(auth)/signup'
+    | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
@@ -255,6 +277,7 @@ export const routeTree = rootRoute
     "/dashboard": {
       "filePath": "dashboard/route.tsx",
       "children": [
+        "/dashboard/billing",
         "/dashboard/events",
         "/dashboard/privacy",
         "/dashboard/profile",
@@ -266,6 +289,10 @@ export const routeTree = rootRoute
     },
     "/(auth)/signup": {
       "filePath": "(auth)/signup.tsx"
+    },
+    "/dashboard/billing": {
+      "filePath": "dashboard/billing.tsx",
+      "parent": "/dashboard"
     },
     "/dashboard/events": {
       "filePath": "dashboard/events.tsx",

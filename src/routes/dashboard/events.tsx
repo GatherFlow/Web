@@ -1,14 +1,7 @@
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import React from 'react'
 
 export const Route = createFileRoute('/dashboard/events')({
-  beforeLoad: ({ context }) => {
-    const { isAuthorized } = context.auth
-
-    if (!isAuthorized) {
-      return redirect({ to: '/' })
-    }
-  },
   component: RouteComponent,
 })
 

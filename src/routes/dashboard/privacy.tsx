@@ -1,15 +1,8 @@
 import { ManagePrivacyForm } from '@/features/users/components/manage-privacy-form'
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import React from 'react'
 
 export const Route = createFileRoute('/dashboard/privacy')({
-  beforeLoad: ({ context }) => {
-    const { isAuthorized } = context.auth
-
-    if (!isAuthorized) {
-      return redirect({ to: '/' })
-    }
-  },
   component: RouteComponent,
 })
 

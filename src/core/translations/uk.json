@@ -11,6 +11,7 @@
         "text": "Мобільний застосунок вже скоро!"
       },
       "catchphrase": {
+        "fulltext": "Organize events with ease",
         "accent": "Легко",
         "text": "Організовуйте події"
       },
@@ -96,17 +97,20 @@
   },
   "auth": {
     "login": {
-      "heading": "Увійти в акаунт",
+      "title": "Welcome back",
+      "description": "Enter your credentials to access your account",
       "submit": "Увійти",
       "submitting": "Вхід...",
       "offer": "Вже є акаунт?"
     },
     "signup": {
-      "heading": "Зареєструватися",
-      "submit": "Зареєструватися",
+      "title": "Create an account",
+      "description": "Enter your information to get started with GatherFlow",
       "submitting": "Реєстрація...",
       "offer": "Немає акаунту?"
     },
+    "return-home": "Back to home",
+    "thirdparty-fallback": "Or continue with",
     "email-label": "Пошта",
     "email-placeholder": "Введіть пошту",
     "password-label": "Пароль",

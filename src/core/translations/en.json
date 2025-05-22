@@ -11,6 +11,7 @@
         "text": "Launching our mobile app soon!"
       },
       "catchphrase": {
+        "fulltext": "Organize events with ease",
         "accent": "With Ease",
         "text": "Organize Events"
       },
@@ -96,17 +97,21 @@
   },
   "auth": {
     "login": {
-      "heading": "Login",
+      "title": "Welcome back",
+      "description": "Enter your credentials to access your account",
       "submit": "Login",
       "submitting": "Logging in...",
       "offer": "Already have an account?"
     },
     "signup": {
-      "heading": "Sign up",
+      "title": "Create an account",
+      "description": "Enter your information to get started with GatherFlow",
       "submit": "Sign up",
       "submitting": "Signing up...",
       "offer": "Don't have an account?"
     },
+    "return-home": "Back to home",
+    "thirdparty-fallback": "Or continue with",
     "email-label": "Email",
     "email-placeholder": "Enter email",
     "password-label": "Password",

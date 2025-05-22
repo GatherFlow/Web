@@ -1,6 +1,7 @@
 import Logo from '@/assets/logo.svg?react'
 import { Avatar, AvatarFallback } from '@/core/components/ui/avatar'
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/core/components/ui/sidebar"
+import { useLogout } from '@/features/auth/mutations/useLogout'
 import { useAuthStore } from "@/features/auth/stores"
 import { Link } from "@tanstack/react-router"
 import { Calendar, Crown, LayoutDashboard, LogOut, Shield, UserRound } from "lucide-react"
@@ -8,6 +9,8 @@ import { Calendar, Crown, LayoutDashboard, LogOut, Shield, UserRound } from "luc
 export const DashboardSidebar = () => {
   const isAdmin = useAuthStore((select) => select.isAdmin)
   const user = useAuthStore((select) => select.user)
+
+  const { mutate } = useLogout()
 
   const links = [
     {
@@ -76,7 +79,7 @@ export const DashboardSidebar = () => {
             </SidebarMenuItem>
           )}
           <SidebarMenuItem>
-            <SidebarMenuButton>
+            <SidebarMenuButton onClick={() => mutate()}>
               <LogOut />
               Sign out
             </SidebarMenuButton>

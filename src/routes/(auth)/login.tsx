@@ -64,12 +64,12 @@ function RouteComponent() {
               <motion.div variants={itemVariants} className="mb-6">
                 <Link to="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground">
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  Back to home
+                  {t('auth.return-home')}
                 </Link>
               </motion.div>
               <motion.div variants={itemVariants} className="space-y-2 mb-8">
-                <h1 className="text-3xl font-bold tracking-tight">Welcome back</h1>
-                <p className="text-muted-foreground">Enter your credentials to access your account</p>
+                <h1 className="text-3xl font-bold tracking-tight">{t('auth.login.title')}</h1>
+                <p className="text-muted-foreground">{t('auth.login.description')}</p>
               </motion.div>
               <LoginForm />
               <motion.div variants={itemVariants} className="mt-6">
@@ -78,7 +78,7 @@ function RouteComponent() {
                     <Separator />
                   </div>
                   <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+                    <span className="bg-background px-2 text-muted-foreground">{t('auth.thirdparty-fallback')}</span>
                   </div>
                 </div>
                 <div className="mt-6">
@@ -106,9 +106,9 @@ function RouteComponent() {
                 </div>
               </motion.div>
               <motion.p variants={itemVariants} className="mt-8 text-center text-sm text-muted-foreground">
-                Don't have an account?{" "}
+                {t('auth.signup.offer')}{" "}
                 <Link to="/signup" className="font-medium text-gold-600 hover:text-gold-700">
-                  Sign up
+                  {t('auth.signup.submit')}
                 </Link>
               </motion.p>
             </motion.div>
@@ -116,10 +116,9 @@ function RouteComponent() {
               <div className="absolute inset-0 bg-gradient-to-br from-gold-400/90 to-gold-600/90 z-10" />
               <div className="absolute inset-0 z-20 flex flex-col justify-center p-12">
                 <div className="space-y-4 max-w-md">
-                  <h2 className="text-3xl font-bold tracking-tight text-white">Organize events with ease</h2>
+                  <h2 className="text-3xl font-bold tracking-tight text-white">{t('promo.hero.catchphrase.fulltext')}</h2>
                   <p className="text-white/90">
-                    GatherFlow simplifies event planning, attendee management, and engagement. Create memorable
-                    experiences without the stress.
+                    {t('promo.hero.description')}
                   </p>
                   <div className="flex items-center gap-4 mt-8">
                     <div className="flex -space-x-2">
@@ -138,7 +137,7 @@ function RouteComponent() {
                         </div>
                       ))}
                     </div>
-                    <div className="text-sm text-white">Event organizers trust GatherFlow</div>
+                    <div className="text-sm text-white">{t('promo.hero.trust-section')}</div>
                   </div>
                 </div>
               </div>

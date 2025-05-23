@@ -9,6 +9,7 @@ interface State {
 interface Actions {
   reset: () => void
   setUser: (user: State['user']) => void
+  setVerified: () => void
 }
 
 export type AuthContext = State & Actions

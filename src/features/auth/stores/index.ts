@@ -17,9 +17,18 @@ export const useAuthStore = create<AuthContext>()(
       setUser: (user) =>
         set(() => ({
           user,
-          isAuthorized: !!user,
+          isAuthorized: true,
           isAdmin: user?.role === 'admin' || user?.role === 'supervisor',
         })),
+        setVerified: () =>
+          set(({ user, isAdmin, isAuthorized }) => ({
+            user: {
+              ...user!,
+              isVerified: true,
+            },
+            isAdmin,
+            isAuthorized,
+          }))
     }),
     {
       name: 'auth-store',

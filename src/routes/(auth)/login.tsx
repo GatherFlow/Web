@@ -2,7 +2,7 @@ import { Button } from "@/core/components/ui/button"
 import { Separator } from "@/core/components/ui/separator"
 import { TITLE_TEMPLATE } from '@/core/constants'
 import { canAccessAuth } from '@/core/middlewares/canAccessAuth'
-import { LoginForm } from '@/features/auth/components/LoginForm'
+import { LoginForm } from "@/features/auth/components/login-form"
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { Head } from '@unhead/react'
 import { ArrowLeft } from 'lucide-react'

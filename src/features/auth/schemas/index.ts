@@ -32,8 +32,13 @@ const signupSchema = loginSchema
     path: ['confirmPassword']
   })
 
+const verifyEmailSchema = z.object({
+  otp: z.string().length(4)
+})
+
 type LoginValues = z.infer<typeof loginSchema>
 type SignupValues = z.infer<typeof signupSchema>
+type VerifyEmailValues = z.infer<typeof verifyEmailSchema>
 
-export { loginSchema, signupSchema }
-export type { LoginValues, SignupValues }
+export { loginSchema, signupSchema, verifyEmailSchema }
+export type { LoginValues, SignupValues, VerifyEmailValues }

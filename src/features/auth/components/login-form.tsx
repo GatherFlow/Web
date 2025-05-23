@@ -1,11 +1,10 @@
+import { Button } from "@/core/components/ui/button"
+import { Input } from "@/core/components/ui/input"
 import { useAppForm } from "@/core/components/ui/tanstack-form"
 import React from "react"
 import { useTranslation } from "react-i18next"
-import { loginSchema } from "../schemas"
-import { Input } from "@/core/components/ui/input"
-import { Button } from "@/core/components/ui/button"
 import { useLogin } from "../mutations/useLogin"
-import { Link } from "@tanstack/react-router"
+import { loginSchema } from "../schemas"
 
 export const LoginForm: React.FC = () => {
   const { t } = useTranslation()
@@ -77,10 +76,6 @@ export const LoginForm: React.FC = () => {
         >
           {isPending ? t('auth.login.submitting') : t('auth.login.submit')}
         </Button>
-        <div className="inline-flex justify-center w-full gap-1 text-muted-foreground">
-          <p>{t('auth.signup.offer')}</p>
-          <Link className="underline" to="/signup">{t('auth.signup.submit')}</Link>
-        </div>
       </form>
     </form.AppForm>
   )

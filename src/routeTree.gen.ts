@@ -18,6 +18,7 @@ import { Route as DashboardProfileImport } from './routes/dashboard/profile'
 import { Route as DashboardPrivacyImport } from './routes/dashboard/privacy'
 import { Route as DashboardEventsImport } from './routes/dashboard/events'
 import { Route as DashboardBillingImport } from './routes/dashboard/billing'
+import { Route as authVerifyEmailImport } from './routes/(auth)/verify-email'
 import { Route as authSignupImport } from './routes/(auth)/signup'
 import { Route as authLoginImport } from './routes/(auth)/login'
 
@@ -65,6 +66,12 @@ const DashboardBillingRoute = DashboardBillingImport.update({
   getParentRoute: () => DashboardRouteRoute,
 } as any)
 
+const authVerifyEmailRoute = authVerifyEmailImport.update({
+  id: '/(auth)/verify-email',
+  path: '/verify-email',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const authSignupRoute = authSignupImport.update({
   id: '/(auth)/signup',
   path: '/signup',
@@ -107,6 +114,13 @@ declare module '@tanstack/react-router' {
       path: '/signup'
       fullPath: '/signup'
       preLoaderRoute: typeof authSignupImport
+      parentRoute: typeof rootRoute
+    }
+    '/(auth)/verify-email': {
+      id: '/(auth)/verify-email'
+      path: '/verify-email'
+      fullPath: '/verify-email'
+      preLoaderRoute: typeof authVerifyEmailImport
       parentRoute: typeof rootRoute
     }
     '/dashboard/billing': {
@@ -174,6 +188,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
+  '/verify-email': typeof authVerifyEmailRoute
   '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
@@ -185,6 +200,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
+  '/verify-email': typeof authVerifyEmailRoute
   '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
@@ -198,6 +214,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/signup': typeof authSignupRoute
+  '/(auth)/verify-email': typeof authVerifyEmailRoute
   '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
@@ -212,6 +229,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/login'
     | '/signup'
+    | '/verify-email'
     | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
@@ -222,6 +240,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/signup'
+    | '/verify-email'
     | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
@@ -233,6 +252,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/(auth)/login'
     | '/(auth)/signup'
+    | '/(auth)/verify-email'
     | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
@@ -246,6 +266,7 @@ export interface RootRouteChildren {
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
   authLoginRoute: typeof authLoginRoute
   authSignupRoute: typeof authSignupRoute
+  authVerifyEmailRoute: typeof authVerifyEmailRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -253,6 +274,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
   authLoginRoute: authLoginRoute,
   authSignupRoute: authSignupRoute,
+  authVerifyEmailRoute: authVerifyEmailRoute,
 }
 
 export const routeTree = rootRoute
@@ -268,7 +290,8 @@ export const routeTree = rootRoute
         "/",
         "/dashboard",
         "/(auth)/login",
-        "/(auth)/signup"
+        "/(auth)/signup",
+        "/(auth)/verify-email"
       ]
     },
     "/": {
@@ -289,6 +312,9 @@ export const routeTree = rootRoute
     },
     "/(auth)/signup": {
       "filePath": "(auth)/signup.tsx"
+    },
+    "/(auth)/verify-email": {
+      "filePath": "(auth)/verify-email.tsx"
     },
     "/dashboard/billing": {
       "filePath": "dashboard/billing.tsx",

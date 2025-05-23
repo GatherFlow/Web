@@ -106,6 +106,7 @@
     "signup": {
       "title": "Create an account",
       "description": "Enter your information to get started with GatherFlow",
+      "submit": "Зареєструватися",
       "submitting": "Реєстрація...",
       "offer": "Немає акаунту?"
     },

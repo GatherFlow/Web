@@ -2,23 +2,38 @@ import { Button } from "@/core/components/ui/button"
 import { useAppForm } from "@/core/components/ui/tanstack-form"
 import { verifyEmailSchema } from "../schemas"
 import { InputOTP, InputOTPSlot } from '@/core/components/ui/input-otp'
+import { useVerifyEmail } from "../mutations/useVerifyEmail"
+import React from "react"
 
 export const VerifyEmailForm = () => {
+  const { mutateAsync, isPending } = useVerifyEmail()
+
   const form = useAppForm({
     validators: { onSubmit: verifyEmailSchema },
     defaultValues: {
       otp: ''
-    }
+    },
+    onSubmit: ({ value }) => mutateAsync(value)
   })
+
+  const handleSubmit = React.useCallback((e: React.FormEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    form.handleSubmit()
+  }, [form])
 
   return (
     <form.AppForm>
-      <form>
+      <form onSubmit={handleSubmit}>
         <form.AppField name="otp">
           {(field) => (
             <field.FormItem>
               <field.FormControl>
-                <InputOTP maxLength={4}>
+                <InputOTP
+                  value={field.state.value}
+                  onChange={(value) => field.handleChange(value)}
+                  maxLength={4}
+                >
                   <InputOTPSlot index={0} />
                   <InputOTPSlot index={1} />
                   <InputOTPSlot index={2} />
@@ -29,7 +44,7 @@ export const VerifyEmailForm = () => {
             </field.FormItem>
           )}
         </form.AppField>
-        <Button type="submit" className="w-full mt-6">
+        <Button type="submit" className="w-full mt-6" disabled={isPending}>
           Verify Email
         </Button>
         <div className="mt-6 text-center">

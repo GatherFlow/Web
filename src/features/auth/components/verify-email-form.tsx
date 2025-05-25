@@ -4,16 +4,19 @@ import { verifyEmailSchema } from "../schemas"
 import { InputOTP, InputOTPSlot } from '@/core/components/ui/input-otp'
 import { useVerifyEmail } from "../mutations/useVerifyEmail"
 import React from "react"
+import { useResendCode } from "../mutations/useResendCode"
 
 export const VerifyEmailForm = () => {
-  const { mutateAsync, isPending } = useVerifyEmail()
+  const { mutateAsync: verifyEmail, isPending } = useVerifyEmail()
+
+  const { mutate: resendCode } = useResendCode()
 
   const form = useAppForm({
     validators: { onSubmit: verifyEmailSchema },
     defaultValues: {
       otp: ''
     },
-    onSubmit: ({ value }) => mutateAsync(value)
+    onSubmit: ({ value }) => verifyEmail(value)
   })
 
   const handleSubmit = React.useCallback((e: React.FormEvent) => {
@@ -53,6 +56,7 @@ export const VerifyEmailForm = () => {
             type="button"
             variant="link"
             className="text-gold-600 hover:text-gold-700"
+            onClick={() => resendCode()}
           >
             Resend code
           </Button>

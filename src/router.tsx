@@ -8,6 +8,7 @@ export const router = createRouter({
   context: {
     ...TanStackQueryProvider.getContext(),
     auth: undefined!,
+    session: undefined!
   },
   defaultPreload: 'intent',
   scrollRestoration: true,

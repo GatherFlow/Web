@@ -135,6 +135,7 @@
         "submitting": "Changing..."
       }
     },
+    "remember-password": "Remember your password?",
     "back-to-login": "Back to login",
     "back-to-home": "Back to home",
     "thirdparty-fallback": "Or continue with",

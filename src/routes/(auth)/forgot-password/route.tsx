@@ -1,16 +1,23 @@
 import { TITLE_TEMPLATE } from '@/core/constants'
-import { Link, Outlet, createFileRoute, useRouteContext } from '@tanstack/react-router'
+import { Link, Outlet, createFileRoute, notFound } from '@tanstack/react-router'
 import { Head } from '@unhead/react'
 import { ArrowLeft, KeyRound } from 'lucide-react'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 export const Route = createFileRoute('/(auth)/forgot-password')({
+  beforeLoad: ({ context }) => {
+    const { isAuthorized } = context.auth
+    const { session } = context.session
+
+    if (isAuthorized || !session) {
+      throw notFound()
+    }
+  },
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  const { auth } = useRouteContext({ from: '/(auth)/forgot-password' })
   const { t } = useTranslation()
 
   return (
@@ -44,7 +51,7 @@ function RouteComponent() {
         </div>
         <div className="mt-6 text-center">
           <p className="text-sm text-muted-foreground">
-            Remember your password?{" "}
+            {t('auth.remember-password')}{" "}
             <Link to="/login" className="text-gold-600 hover:text-gold-700">
               {t('auth.back-to-login')}
             </Link>

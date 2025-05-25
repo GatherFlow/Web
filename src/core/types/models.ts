@@ -13,4 +13,12 @@ interface PublicUser {
   language: Language
 }
 
-export type { PublicUser }
+interface ResetSession {
+  id: string,
+  email: string
+  code: string
+  isEmailVerified: boolean
+  expiresAt: Date
+}
+
+export type { PublicUser, ResetSession }

@@ -1,15 +1,27 @@
-import type { Maybe, PublicUser } from "@/core/types"
+import type { Maybe, PublicUser, ResetSession } from "@/core/types"
 
-interface State {
+interface AuthState {
   user: Maybe<PublicUser>
   isAuthorized: boolean
   isAdmin: boolean
 }
 
-interface Actions {
+interface AuthActions {
   reset: () => void
-  setUser: (user: State['user']) => void
+  setUser: (user: AuthState['user']) => void
   setVerified: () => void
 }
 
-export type AuthContext = State & Actions
+export type AuthContext = AuthState & AuthActions
+
+interface ResetSessionState {
+  session: Maybe<ResetSession>
+}
+
+interface ResetSessionActions {
+  reset: () => void
+  setSession: (session: ResetSessionState['session']) => void
+  setVerified: () => void
+}
+
+export type ResetSessionContext = ResetSessionState & ResetSessionActions

@@ -117,6 +117,24 @@
       "verify-action": "Verify email",
       "resend-action": "Resend code"
     },
+    "forgot-password": {
+      "title": "Forgot Password",
+      "email-step": {
+        "description": "Enter your email address and we'll send you a code to reset your password",
+        "submit": "Send Reset Code",
+        "submitting": "Sending..."
+      },
+      "verification-step": {
+        "description": "Enter password reset code, we've sent you on email",
+        "submit": "Verify email",
+        "submitting": "Verifying..."
+      },
+      "reset-step": {
+        "description": "Enter new password",
+        "submit": "Change password",
+        "submitting": "Changing..."
+      }
+    },
     "back-to-login": "Back to login",
     "back-to-home": "Back to home",
     "thirdparty-fallback": "Or continue with",

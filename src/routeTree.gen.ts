@@ -21,6 +21,10 @@ import { Route as DashboardBillingImport } from './routes/dashboard/billing'
 import { Route as authVerifyEmailImport } from './routes/(auth)/verify-email'
 import { Route as authSignupImport } from './routes/(auth)/signup'
 import { Route as authLoginImport } from './routes/(auth)/login'
+import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-password/route'
+import { Route as authForgotPasswordIndexImport } from './routes/(auth)/forgot-password/index'
+import { Route as authForgotPasswordCodeImport } from './routes/(auth)/forgot-password/code'
+import { Route as authForgotPasswordChangeImport } from './routes/(auth)/forgot-password/change'
 
 // Create/Update Routes
 
@@ -84,6 +88,30 @@ const authLoginRoute = authLoginImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const authForgotPasswordRouteRoute = authForgotPasswordRouteImport.update({
+  id: '/(auth)/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const authForgotPasswordIndexRoute = authForgotPasswordIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => authForgotPasswordRouteRoute,
+} as any)
+
+const authForgotPasswordCodeRoute = authForgotPasswordCodeImport.update({
+  id: '/code',
+  path: '/code',
+  getParentRoute: () => authForgotPasswordRouteRoute,
+} as any)
+
+const authForgotPasswordChangeRoute = authForgotPasswordChangeImport.update({
+  id: '/change',
+  path: '/change',
+  getParentRoute: () => authForgotPasswordRouteRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -100,6 +128,13 @@ declare module '@tanstack/react-router' {
       path: '/dashboard'
       fullPath: '/dashboard'
       preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRoute
+    }
+    '/(auth)/forgot-password': {
+      id: '/(auth)/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof authForgotPasswordRouteImport
       parentRoute: typeof rootRoute
     }
     '/(auth)/login': {
@@ -158,6 +193,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexImport
       parentRoute: typeof DashboardRouteImport
     }
+    '/(auth)/forgot-password/change': {
+      id: '/(auth)/forgot-password/change'
+      path: '/change'
+      fullPath: '/forgot-password/change'
+      preLoaderRoute: typeof authForgotPasswordChangeImport
+      parentRoute: typeof authForgotPasswordRouteImport
+    }
+    '/(auth)/forgot-password/code': {
+      id: '/(auth)/forgot-password/code'
+      path: '/code'
+      fullPath: '/forgot-password/code'
+      preLoaderRoute: typeof authForgotPasswordCodeImport
+      parentRoute: typeof authForgotPasswordRouteImport
+    }
+    '/(auth)/forgot-password/': {
+      id: '/(auth)/forgot-password/'
+      path: '/'
+      fullPath: '/forgot-password/'
+      preLoaderRoute: typeof authForgotPasswordIndexImport
+      parentRoute: typeof authForgotPasswordRouteImport
+    }
   }
 }
 
@@ -183,9 +239,28 @@ const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
   DashboardRouteRouteChildren,
 )
 
+interface authForgotPasswordRouteRouteChildren {
+  authForgotPasswordChangeRoute: typeof authForgotPasswordChangeRoute
+  authForgotPasswordCodeRoute: typeof authForgotPasswordCodeRoute
+  authForgotPasswordIndexRoute: typeof authForgotPasswordIndexRoute
+}
+
+const authForgotPasswordRouteRouteChildren: authForgotPasswordRouteRouteChildren =
+  {
+    authForgotPasswordChangeRoute: authForgotPasswordChangeRoute,
+    authForgotPasswordCodeRoute: authForgotPasswordCodeRoute,
+    authForgotPasswordIndexRoute: authForgotPasswordIndexRoute,
+  }
+
+const authForgotPasswordRouteRouteWithChildren =
+  authForgotPasswordRouteRoute._addFileChildren(
+    authForgotPasswordRouteRouteChildren,
+  )
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/forgot-password': typeof authForgotPasswordRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
   '/verify-email': typeof authVerifyEmailRoute
@@ -194,6 +269,9 @@ export interface FileRoutesByFullPath {
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/forgot-password/change': typeof authForgotPasswordChangeRoute
+  '/forgot-password/code': typeof authForgotPasswordCodeRoute
+  '/forgot-password/': typeof authForgotPasswordIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -206,12 +284,16 @@ export interface FileRoutesByTo {
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard': typeof DashboardIndexRoute
+  '/forgot-password/change': typeof authForgotPasswordChangeRoute
+  '/forgot-password/code': typeof authForgotPasswordCodeRoute
+  '/forgot-password': typeof authForgotPasswordIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteRouteWithChildren
+  '/(auth)/forgot-password': typeof authForgotPasswordRouteRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/signup': typeof authSignupRoute
   '/(auth)/verify-email': typeof authVerifyEmailRoute
@@ -220,6 +302,9 @@ export interface FileRoutesById {
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/dashboard/': typeof DashboardIndexRoute
+  '/(auth)/forgot-password/change': typeof authForgotPasswordChangeRoute
+  '/(auth)/forgot-password/code': typeof authForgotPasswordCodeRoute
+  '/(auth)/forgot-password/': typeof authForgotPasswordIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -227,6 +312,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
+    | '/forgot-password'
     | '/login'
     | '/signup'
     | '/verify-email'
@@ -235,6 +321,9 @@ export interface FileRouteTypes {
     | '/dashboard/privacy'
     | '/dashboard/profile'
     | '/dashboard/'
+    | '/forgot-password/change'
+    | '/forgot-password/code'
+    | '/forgot-password/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -246,10 +335,14 @@ export interface FileRouteTypes {
     | '/dashboard/privacy'
     | '/dashboard/profile'
     | '/dashboard'
+    | '/forgot-password/change'
+    | '/forgot-password/code'
+    | '/forgot-password'
   id:
     | '__root__'
     | '/'
     | '/dashboard'
+    | '/(auth)/forgot-password'
     | '/(auth)/login'
     | '/(auth)/signup'
     | '/(auth)/verify-email'
@@ -258,12 +351,16 @@ export interface FileRouteTypes {
     | '/dashboard/privacy'
     | '/dashboard/profile'
     | '/dashboard/'
+    | '/(auth)/forgot-password/change'
+    | '/(auth)/forgot-password/code'
+    | '/(auth)/forgot-password/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
+  authForgotPasswordRouteRoute: typeof authForgotPasswordRouteRouteWithChildren
   authLoginRoute: typeof authLoginRoute
   authSignupRoute: typeof authSignupRoute
   authVerifyEmailRoute: typeof authVerifyEmailRoute
@@ -272,6 +369,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
+  authForgotPasswordRouteRoute: authForgotPasswordRouteRouteWithChildren,
   authLoginRoute: authLoginRoute,
   authSignupRoute: authSignupRoute,
   authVerifyEmailRoute: authVerifyEmailRoute,
@@ -289,6 +387,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/dashboard",
+        "/(auth)/forgot-password",
         "/(auth)/login",
         "/(auth)/signup",
         "/(auth)/verify-email"
@@ -305,6 +404,14 @@ export const routeTree = rootRoute
         "/dashboard/privacy",
         "/dashboard/profile",
         "/dashboard/"
+      ]
+    },
+    "/(auth)/forgot-password": {
+      "filePath": "(auth)/forgot-password/route.tsx",
+      "children": [
+        "/(auth)/forgot-password/change",
+        "/(auth)/forgot-password/code",
+        "/(auth)/forgot-password/"
       ]
     },
     "/(auth)/login": {
@@ -335,6 +442,18 @@ export const routeTree = rootRoute
     "/dashboard/": {
       "filePath": "dashboard/index.tsx",
       "parent": "/dashboard"
+    },
+    "/(auth)/forgot-password/change": {
+      "filePath": "(auth)/forgot-password/change.tsx",
+      "parent": "/(auth)/forgot-password"
+    },
+    "/(auth)/forgot-password/code": {
+      "filePath": "(auth)/forgot-password/code.tsx",
+      "parent": "/(auth)/forgot-password"
+    },
+    "/(auth)/forgot-password/": {
+      "filePath": "(auth)/forgot-password/index.tsx",
+      "parent": "/(auth)/forgot-password"
     }
   }
 }

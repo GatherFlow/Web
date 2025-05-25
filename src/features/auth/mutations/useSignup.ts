@@ -14,7 +14,7 @@ export const useSignup = () => {
   const setUser = useAuthStore((state) => state.setUser)
   
   return useMutation({
-    mutationFn: async (data: SignupValues) => {
+    mutationFn: async ({ confirmPassword, ...data}: SignupValues) => {
       const url = `api/signup`
 
       const response = await fetch(url, {
@@ -35,7 +35,7 @@ export const useSignup = () => {
 
       setUser(data)
 
-      router.navigate({ to: '/' })
+      router.navigate({ to: data.role === 'supervisor' ? '/dashboard' : '/verify-email' })
     }
   })
 }

@@ -4,6 +4,7 @@ import { Link, createFileRoute, notFound, useRouteContext } from '@tanstack/reac
 import { Head } from '@unhead/react'
 import { ArrowLeft, Mail } from 'lucide-react'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const Route = createFileRoute('/(auth)/verify-email')({
   beforeLoad: ({ context }) => {
@@ -18,11 +19,12 @@ export const Route = createFileRoute('/(auth)/verify-email')({
 
 function RouteComponent() {
   const { auth } = useRouteContext({ from: '/(auth)/verify-email' })
+  const { t } = useTranslation()
 
   return (
     <React.Fragment>
       <Head titleTemplate={TITLE_TEMPLATE}>
-        Verify email
+        {t('auth.verify-email.title')}
       </Head>
       <div className="min-h-screen flex flex-col items-center justify-center bg-muted/30 p-4">
       <div className="w-full max-w-md">
@@ -32,7 +34,7 @@ function RouteComponent() {
             className="inline-flex items-center text-sm font-medium text-muted-foreground hover:text-foreground"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to login
+            {t('auth.back-to-login')}
           </Link>
         </div>
 
@@ -43,9 +45,9 @@ function RouteComponent() {
             </div>
           </div>
 
-          <h1 className="text-2xl font-bold text-center mb-2">Verify your email</h1>
+          <h1 className="text-2xl font-bold text-center mb-2">{t('auth.verify-email.title')}</h1>
           <p className="text-muted-foreground text-center mb-6">
-            We've sent a 4-digit code to <span className="font-medium">{auth.user?.email}</span>
+            {t('auth.verify-email.description')} <span className="font-medium">{auth.user?.email}</span>
           </p>
             <VerifyEmailForm />
         </div>

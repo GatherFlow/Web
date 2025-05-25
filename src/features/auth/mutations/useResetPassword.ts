@@ -4,9 +4,11 @@ import { REQUEST_METHODS } from "@/core/constants"
 import { getDefaultHeaders } from "@/core/utils"
 import type { ApiError } from "@/core/types"
 import { useRouter } from "@tanstack/react-router"
+import { useResetSessionStore } from "../stores/session"
 
 export const useResetPassword = () => {
   const router = useRouter()
+  const reset = useResetSessionStore((select) => select.reset)
 
   return useMutation({
     mutationFn: async (data: ResetPasswordValues) => {
@@ -26,6 +28,8 @@ export const useResetPassword = () => {
       }
     },
     onSuccess: () => {
+      reset()
+
       router.navigate({ to: '/login' })
     }
   })

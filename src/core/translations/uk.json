@@ -110,7 +110,15 @@
       "submitting": "Реєстрація...",
       "offer": "Немає акаунту?"
     },
-    "return-home": "Back to home",
+    "verify-email": {
+      "title": "Verify your email",
+      "description": "We've sent a 4-digit code to",
+      "invalid-code": "Don't receive a code?",
+      "verify-action": "Verify email",
+      "resend-action": "Resend code"
+    },
+    "back-to-login": "Back to login",
+    "back-to-home": "Back to home",
     "thirdparty-fallback": "Or continue with",
     "email-label": "Пошта",
     "email-placeholder": "Введіть пошту",

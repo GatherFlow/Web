@@ -5,10 +5,12 @@ import { InputOTP, InputOTPSlot } from '@/core/components/ui/input-otp'
 import { useVerifyEmail } from "../mutations/useVerifyEmail"
 import React from "react"
 import { useResendCode } from "../mutations/useResendCode"
+import { useTranslation } from "react-i18next"
 
 export const VerifyEmailForm = () => {
+  const { t } = useTranslation()
+  
   const { mutateAsync: verifyEmail, isPending } = useVerifyEmail()
-
   const { mutate: resendCode } = useResendCode()
 
   const form = useAppForm({
@@ -48,17 +50,17 @@ export const VerifyEmailForm = () => {
           )}
         </form.AppField>
         <Button type="submit" className="w-full mt-6" disabled={isPending}>
-          Verify Email
+          {t('auth.verify-email.verify-action')}
         </Button>
         <div className="mt-6 text-center">
-        <p className="text-sm text-muted-foreground">Didn't receive a code?</p>
+        <p className="text-sm text-muted-foreground">{t('auth.verify-email.invalid-code')}</p>
           <Button
             type="button"
             variant="link"
             className="text-gold-600 hover:text-gold-700"
             onClick={() => resendCode()}
           >
-            Resend code
+            {t('auth.verify-email.resend-action')}
           </Button>
         </div>
       </form>

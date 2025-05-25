@@ -64,7 +64,7 @@ function RouteComponent() {
               <motion.div variants={itemVariants} className="mb-6">
                 <Link to="/" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground">
                   <ArrowLeft className="mr-2 h-4 w-4" />
-                  {t('auth.return-home')}
+                  {t('auth.back-to-home')}
                 </Link>
               </motion.div>
               <motion.div variants={itemVariants} className="space-y-2 mb-8">

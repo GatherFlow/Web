@@ -31,7 +31,7 @@ export const useSendResetCode = () => {
 
       return session
     },
-    onSuccess: (data, variables, context) => {
+    onSuccess: (data) => {
       setSession(data)
 
       router.navigate({ to: '/forgot-password/code' })

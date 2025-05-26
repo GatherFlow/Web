@@ -1,4 +1,5 @@
 ARG NODE_VERSION=22
+ARG VITE_PORT
 
 FROM node:${NODE_VERSION}-alpine AS base
 
@@ -16,6 +17,6 @@ COPY . .
 
 RUN node --run build
 
-EXPOSE 4000
+EXPOSE 9091
 
 CMD [ "node", "--run", "serve" ]

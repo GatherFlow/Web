@@ -22,15 +22,15 @@ export default defineConfig(({ mode }) => {
       environment: "jsdom",
     },
     preview: {
-      port: 4000,
+      port: env.VITE_PORT,
       strictPort: true,
       allowedHosts: ['gather.onelil.tech']
     },
     server: {
-      port: 4000,
+      port: env.VITE_PORT,
       strictPort: true,
       host: true,
-      origin: "http://localhost:4000",
+      origin: `http://localhost:${env.VITE_PORT}`,
       proxy: {
         '/api': {
           target: env.VITE_API_BASE_URL,

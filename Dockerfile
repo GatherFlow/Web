@@ -1,6 +1,6 @@
 ARG NODE_VERSION=22
 
-FROM node:${NODE_VERSION}-alpine AS base
+FROM node:${NODE_VERSION}-alpine
 
 ARG VITE_API_BASE_URL
 
@@ -16,6 +16,6 @@ COPY . .
 
 RUN node --run build
 
-EXPOSE 4000
+EXPOSE 9091
 
 CMD [ "node", "--run", "serve" ]

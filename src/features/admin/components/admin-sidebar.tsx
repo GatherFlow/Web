@@ -1,13 +1,18 @@
-import Logo from '@/assets/logo.svg?react'
-import { LanguageDropdown } from '@/core/components/promo-page/language-dropdown'
-import { Avatar, AvatarFallback, AvatarImage } from '@/core/components/ui/avatar'
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/core/components/ui/sidebar"
-import { useLogout } from '@/features/auth/mutations/useLogout'
-import { useAuthStore } from "@/features/auth/stores"
-import { Link } from "@tanstack/react-router"
-import { Calendar, Crown, LayoutDashboard, LogOut, Shield, UserRound } from "lucide-react"
+import Logo from '@/assets/logo.svg?react';
+import { Avatar, AvatarFallback, AvatarImage } from "@/core/components/ui/avatar";
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "@/core/components/ui/sidebar";
+import type { HealthStatus } from '@/core/types';
+import { useLogout } from '@/features/auth/mutations/useLogout';
+import { useAuthStore } from '@/features/auth/stores';
+import { Link } from "@tanstack/react-router";
+import { ArrowLeft, LayoutDashboard, LogOut, UsersRound } from "lucide-react";
+import React from "react";
 
-export const DashboardSidebar = () => {
+interface AdminStatusProps {
+  healthStatus: HealthStatus
+}
+
+export const AdminSidebar: React.FC<AdminStatusProps> = ({ healthStatus }) => {
   const isAdmin = useAuthStore((select) => select.isAdmin)
   const user = useAuthStore((select) => select.user)
 
@@ -17,35 +22,25 @@ export const DashboardSidebar = () => {
     {
       title: 'Dashboard',
       icon: <LayoutDashboard />,
-      to: '/dashboard'
+      to: '/admin'
     },
     {
-      title: 'Events',
-      icon: <Calendar />,
-      to: '/dashboard/events'
-    },
-    {
-      title: 'Privacy',
-      icon: <Shield />,
-      to: '/dashboard/privacy'
-    },
-    {
-      title: 'Profile',
-      icon: <UserRound />,
-      to: '/dashboard/profile'
+      title: 'User Management',
+      icon: <UsersRound />,
+      to: '/admin/users'
     }
   ]
 
   return (
     <Sidebar>
       <SidebarHeader className="border-b px-6 py-3">
-        <Link to="/dashboard" className="flex items-center gap-2">
+        <Link to="/admin" className="flex items-center gap-2">
           <Logo className="size-8" />
           <span className="text-xl font-bold">GatherFlow</span>
         </Link>
       </SidebarHeader>
       <SidebarContent>
-        <div className="px-4 py-6">
+        <div className="px-4 py-6 space-y-5">
           <div className="flex items-center gap-3">
             {user?.avatar !== '' ? (
               <Avatar className='size-10'>
@@ -61,6 +56,12 @@ export const DashboardSidebar = () => {
               <p className="text-xs text-muted-foreground">{user?.email}</p>
             </div>
           </div>
+          <div className="rounded-lg bg-red-50 dark:bg-red-950/20 p-3 border border-red-200 dark:border-red-800">
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-medium">System Status</span>
+                <span className="text-xs bg-green-200 text-green-800 px-1.5 py-0.5 rounded-full">{healthStatus.message}</span>
+              </div>
+            </div>
         </div>
         <SidebarMenu className='px-2'>
           {links.map((link, i) => (
@@ -80,22 +81,19 @@ export const DashboardSidebar = () => {
           {isAdmin && (
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <Link to='/admin'>
-                  <Crown />
-                  Go to admin panel
+                <Link to="/dashboard">
+                  <ArrowLeft />
+                  Go to dashboard
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           )}
-          <div className='inline-flex gap-3 w-full mt-4'>
-            <LanguageDropdown />
-            <SidebarMenuItem className='w-full'>
-              <SidebarMenuButton onClick={() => mutate()}>
-                <LogOut />
-                Sign out
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </div>
+          <SidebarMenuItem>
+            <SidebarMenuButton onClick={() => mutate()}>
+              <LogOut />
+              Sign out
+            </SidebarMenuButton>
+          </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>
     </Sidebar>

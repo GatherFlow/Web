@@ -21,4 +21,10 @@ interface ResetSession {
   expiresAt: Date
 }
 
-export type { PublicUser, ResetSession }
+interface HealthStatus {
+  uptime: number
+  message: string
+  date: string
+}
+
+export type { PublicUser, ResetSession, HealthStatus }

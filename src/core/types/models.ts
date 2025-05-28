@@ -1,16 +1,25 @@
 type Language = 'en' | 'uk'
 type Role = 'user' | 'admin' | 'supervisor'
+type UserType = 'internal' | 'external'
 
-interface PublicUser {
+interface BaseUser {
   id: string
   firstName: string
   lastName: string
   email: string
+  bio: string
   role: Role
   isVerified: boolean
-  dateOfBirth: Date | null
   avatar: string
+}
+
+interface PublicUser extends BaseUser {
+  dateOfBirth: Date | null
   language: Language
+}
+
+interface AdminUser extends BaseUser {
+  type: UserType
 }
 
 interface ResetSession {
@@ -27,4 +36,4 @@ interface HealthStatus {
   date: string
 }
 
-export type { PublicUser, ResetSession, HealthStatus }
+export type { BaseUser, HealthStatus, PublicUser, ResetSession, AdminUser }

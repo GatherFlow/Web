@@ -1,7 +1,7 @@
-import type { HealthStatus } from "@/core/types"
+import type { AdminUser, HealthStatus } from "@/core/types"
 import { queryOptions } from "@tanstack/react-query"
 
-export const systemStatusOptions = () => {
+const systemStatusOptions = () => {
   return queryOptions({
     queryKey: ['health'],
     queryFn: async () => {
@@ -16,3 +16,20 @@ export const systemStatusOptions = () => {
     staleTime: Infinity
   })
 }
+
+const usersOptions = () => {
+  return queryOptions({
+    queryKey: ['users'],
+    queryFn: async () => {
+      const response = await fetch('/api/admin/users', {
+        credentials: 'include'
+      })
+
+      const users: AdminUser[] = await response.json()
+
+      return users
+    }
+  })
+}
+
+export { systemStatusOptions, usersOptions }

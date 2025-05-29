@@ -12,12 +12,15 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as DashboardRouteImport } from './routes/dashboard/route'
+import { Route as AdminRouteImport } from './routes/admin/route'
 import { Route as IndexImport } from './routes/index'
 import { Route as DashboardIndexImport } from './routes/dashboard/index'
+import { Route as AdminIndexImport } from './routes/admin/index'
 import { Route as DashboardProfileImport } from './routes/dashboard/profile'
 import { Route as DashboardPrivacyImport } from './routes/dashboard/privacy'
 import { Route as DashboardEventsImport } from './routes/dashboard/events'
 import { Route as DashboardBillingImport } from './routes/dashboard/billing'
+import { Route as AdminUsersImport } from './routes/admin/users'
 import { Route as authVerifyEmailImport } from './routes/(auth)/verify-email'
 import { Route as authSignupImport } from './routes/(auth)/signup'
 import { Route as authLoginImport } from './routes/(auth)/login'
@@ -34,6 +37,12 @@ const DashboardRouteRoute = DashboardRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AdminRouteRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
@@ -44,6 +53,12 @@ const DashboardIndexRoute = DashboardIndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DashboardRouteRoute,
+} as any)
+
+const AdminIndexRoute = AdminIndexImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRouteRoute,
 } as any)
 
 const DashboardProfileRoute = DashboardProfileImport.update({
@@ -68,6 +83,12 @@ const DashboardBillingRoute = DashboardBillingImport.update({
   id: '/billing',
   path: '/billing',
   getParentRoute: () => DashboardRouteRoute,
+} as any)
+
+const AdminUsersRoute = AdminUsersImport.update({
+  id: '/users',
+  path: '/users',
+  getParentRoute: () => AdminRouteRoute,
 } as any)
 
 const authVerifyEmailRoute = authVerifyEmailImport.update({
@@ -123,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRoute
+    }
     '/dashboard': {
       id: '/dashboard'
       path: '/dashboard'
@@ -158,6 +186,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authVerifyEmailImport
       parentRoute: typeof rootRoute
     }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersImport
+      parentRoute: typeof AdminRouteImport
+    }
     '/dashboard/billing': {
       id: '/dashboard/billing'
       path: '/billing'
@@ -185,6 +220,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/dashboard/profile'
       preLoaderRoute: typeof DashboardProfileImport
       parentRoute: typeof DashboardRouteImport
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexImport
+      parentRoute: typeof AdminRouteImport
     }
     '/dashboard/': {
       id: '/dashboard/'
@@ -218,6 +260,20 @@ declare module '@tanstack/react-router' {
 }
 
 // Create and export the route tree
+
+interface AdminRouteRouteChildren {
+  AdminUsersRoute: typeof AdminUsersRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteRouteChildren: AdminRouteRouteChildren = {
+  AdminUsersRoute: AdminUsersRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
+  AdminRouteRouteChildren,
+)
 
 interface DashboardRouteRouteChildren {
   DashboardBillingRoute: typeof DashboardBillingRoute
@@ -259,15 +315,18 @@ const authForgotPasswordRouteRouteWithChildren =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRouteWithChildren
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/forgot-password': typeof authForgotPasswordRouteRouteWithChildren
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
   '/verify-email': typeof authVerifyEmailRoute
+  '/admin/users': typeof AdminUsersRoute
   '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
+  '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/forgot-password/change': typeof authForgotPasswordChangeRoute
   '/forgot-password/code': typeof authForgotPasswordCodeRoute
@@ -279,10 +338,12 @@ export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
   '/signup': typeof authSignupRoute
   '/verify-email': typeof authVerifyEmailRoute
+  '/admin/users': typeof AdminUsersRoute
   '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
+  '/admin': typeof AdminIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/forgot-password/change': typeof authForgotPasswordChangeRoute
   '/forgot-password/code': typeof authForgotPasswordCodeRoute
@@ -292,15 +353,18 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteRouteWithChildren
   '/dashboard': typeof DashboardRouteRouteWithChildren
   '/(auth)/forgot-password': typeof authForgotPasswordRouteRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/(auth)/signup': typeof authSignupRoute
   '/(auth)/verify-email': typeof authVerifyEmailRoute
+  '/admin/users': typeof AdminUsersRoute
   '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
+  '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/(auth)/forgot-password/change': typeof authForgotPasswordChangeRoute
   '/(auth)/forgot-password/code': typeof authForgotPasswordCodeRoute
@@ -311,15 +375,18 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/admin'
     | '/dashboard'
     | '/forgot-password'
     | '/login'
     | '/signup'
     | '/verify-email'
+    | '/admin/users'
     | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
+    | '/admin/'
     | '/dashboard/'
     | '/forgot-password/change'
     | '/forgot-password/code'
@@ -330,10 +397,12 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/verify-email'
+    | '/admin/users'
     | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
+    | '/admin'
     | '/dashboard'
     | '/forgot-password/change'
     | '/forgot-password/code'
@@ -341,15 +410,18 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/admin'
     | '/dashboard'
     | '/(auth)/forgot-password'
     | '/(auth)/login'
     | '/(auth)/signup'
     | '/(auth)/verify-email'
+    | '/admin/users'
     | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
+    | '/admin/'
     | '/dashboard/'
     | '/(auth)/forgot-password/change'
     | '/(auth)/forgot-password/code'
@@ -359,6 +431,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRouteRoute: typeof AdminRouteRouteWithChildren
   DashboardRouteRoute: typeof DashboardRouteRouteWithChildren
   authForgotPasswordRouteRoute: typeof authForgotPasswordRouteRouteWithChildren
   authLoginRoute: typeof authLoginRoute
@@ -368,6 +441,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRouteRoute: AdminRouteRouteWithChildren,
   DashboardRouteRoute: DashboardRouteRouteWithChildren,
   authForgotPasswordRouteRoute: authForgotPasswordRouteRouteWithChildren,
   authLoginRoute: authLoginRoute,
@@ -386,6 +460,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/admin",
         "/dashboard",
         "/(auth)/forgot-password",
         "/(auth)/login",
@@ -395,6 +470,13 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/admin": {
+      "filePath": "admin/route.tsx",
+      "children": [
+        "/admin/users",
+        "/admin/"
+      ]
     },
     "/dashboard": {
       "filePath": "dashboard/route.tsx",
@@ -423,6 +505,10 @@ export const routeTree = rootRoute
     "/(auth)/verify-email": {
       "filePath": "(auth)/verify-email.tsx"
     },
+    "/admin/users": {
+      "filePath": "admin/users.tsx",
+      "parent": "/admin"
+    },
     "/dashboard/billing": {
       "filePath": "dashboard/billing.tsx",
       "parent": "/dashboard"
@@ -438,6 +524,10 @@ export const routeTree = rootRoute
     "/dashboard/profile": {
       "filePath": "dashboard/profile.tsx",
       "parent": "/dashboard"
+    },
+    "/admin/": {
+      "filePath": "admin/index.tsx",
+      "parent": "/admin"
     },
     "/dashboard/": {
       "filePath": "dashboard/index.tsx",

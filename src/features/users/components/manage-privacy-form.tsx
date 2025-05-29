@@ -1,20 +1,37 @@
 import { Switch } from "@/core/components/ui/switch";
 import { useAppForm } from "@/core/components/ui/tanstack-form";
+import type { UserPrivacy } from "@/core/types";
 import React from "react";
+import { managePrivacySchema } from "../schemas";
+import { useManagePrivacy } from "../mutations/useManagePrivacy";
 
-export const ManagePrivacyForm: React.FC = () => (
+export const ManagePrivacyForm: React.FC<{ privacy: UserPrivacy }> = (
+  { privacy }
+) => (
   <React.Fragment>
-    <ManagePrivateProfile />
-    <ManageOwnedTickets />
-    <ManagePurchasedTickets />
-    <ManageAppreciatedTickets />
+    <ManagePrivateProfile isPrivate={privacy.isPrivate} />
+    <ManageOwnedTickets hideOwned={privacy.hideOwned} />
+    <ManagePurchasedTickets hidePurchased={privacy.hidePurchased} />
+    <ManageAppreciatedTickets hideAppreciated={privacy.hideAppreciated} />
   </React.Fragment>
 )
 
-const ManagePrivateProfile = () => {
+const ManagePrivateProfile: React.FC<Pick<UserPrivacy, 'isPrivate'>> =(
+  { isPrivate }
+) => {
+  const { mutateAsync, isPending } = useManagePrivacy()
+
   const form = useAppForm({
+    validators: {
+      onSubmit: managePrivacySchema
+        .pick({ isPrivate: true })
+        .required()
+    },
     defaultValues: {
-      isPrivate: false
+      isPrivate
+    },
+    onSubmit: async ({ value }) => {
+      await mutateAsync(value)
     }
   })
 
@@ -35,7 +52,11 @@ const ManagePrivateProfile = () => {
               <field.FormControl>
                 <Switch
                   checked={field.state.value}
-                  onCheckedChange={() => field.setValue(!field.state.value)}
+                  onCheckedChange={() => {
+                    field.setValue(!field.state.value)
+                    form.handleSubmit()
+                  }}
+                  disabled={isPending}
                 />
               </field.FormControl>
             </field.FormItem>
@@ -46,17 +67,29 @@ const ManagePrivateProfile = () => {
   )
 }
 
-const ManageOwnedTickets = () => {
+const ManageOwnedTickets: React.FC<Pick<UserPrivacy, 'hideOwned'>> = (
+  { hideOwned }
+) => {
+  const { mutateAsync, isPending } = useManagePrivacy()
+
   const form = useAppForm({
+    validators: {
+      onSubmit: managePrivacySchema
+        .pick({ hideOwned: true })
+        .required()
+    },
     defaultValues: {
-      areHidden: false
+      hideOwned
+    },
+    onSubmit: async ({ value }) => {
+      await mutateAsync(value)
     }
   })
 
   return (
     <form.AppForm>
       <form>
-        <form.AppField name="areHidden">
+        <form.AppField name="hideOwned">
           {(field) => (
             <field.FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
               <div className="space-y-0.5">
@@ -70,7 +103,11 @@ const ManageOwnedTickets = () => {
               <field.FormControl>
                 <Switch
                   checked={field.state.value}
-                  onCheckedChange={() => field.setValue(!field.state.value)}
+                  onCheckedChange={() => {
+                    field.setValue(!field.state.value)
+                    form.handleSubmit()
+                  }}
+                  disabled={isPending}
                 />
               </field.FormControl>
             </field.FormItem>
@@ -81,17 +118,29 @@ const ManageOwnedTickets = () => {
   )
 }
 
-const ManagePurchasedTickets = () => {
+const ManagePurchasedTickets: React.FC<Pick<UserPrivacy, 'hidePurchased'>> = (
+  { hidePurchased }
+) => {
+  const { mutateAsync, isPending } = useManagePrivacy()
+
   const form = useAppForm({
+    validators: {
+      onSubmit: managePrivacySchema
+        .pick({ hidePurchased: true })
+        .required()
+    },
     defaultValues: {
-      areHidden: false
+      hidePurchased
+    },
+    onSubmit: async ({ value }) => {
+      await mutateAsync(value)
     }
   })
 
   return (
     <form.AppForm>
       <form>
-        <form.AppField name="areHidden">
+        <form.AppField name="hidePurchased">
           {(field) => (
             <field.FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
               <div className="space-y-0.5">
@@ -105,7 +154,11 @@ const ManagePurchasedTickets = () => {
               <field.FormControl>
                 <Switch
                   checked={field.state.value}
-                  onCheckedChange={() => field.setValue(!field.state.value)}
+                  onCheckedChange={() => {
+                    field.setValue(!field.state.value)
+                    form.handleSubmit()
+                  }}
+                  disabled={isPending}
                 />
               </field.FormControl>
             </field.FormItem>
@@ -116,17 +169,27 @@ const ManagePurchasedTickets = () => {
   )
 }
 
-const ManageAppreciatedTickets = () => {
+const ManageAppreciatedTickets: React.FC<Pick<UserPrivacy, 'hideAppreciated'>> = ({ hideAppreciated }) => {
+  const { mutateAsync, isPending } = useManagePrivacy()
+
   const form = useAppForm({
+    validators: {
+      onSubmit: managePrivacySchema
+        .pick({ hideAppreciated: true })
+        .required()
+    },
     defaultValues: {
-      areHidden: false
+      hideAppreciated
+    },
+    onSubmit: async ({ value }) => {
+      await mutateAsync(value)
     }
   })
 
   return (
     <form.AppForm>
       <form>
-        <form.AppField name="areHidden">
+        <form.AppField name="hideAppreciated">
           {(field) => (
             <field.FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
               <div className="space-y-0.5">
@@ -140,7 +203,11 @@ const ManageAppreciatedTickets = () => {
               <field.FormControl>
                 <Switch
                   checked={field.state.value}
-                  onCheckedChange={() => field.setValue(!field.state.value)}
+                  onCheckedChange={() => {
+                    field.setValue(!field.state.value)
+                    form.handleSubmit()
+                  }}
+                  disabled={isPending}
                 />
               </field.FormControl>
             </field.FormItem>

@@ -4,6 +4,7 @@ import React from "react"
 import Logo from '@/assets/logo.svg?react'
 import { useTranslation } from "react-i18next"
 import { LanguageDropdown } from "./language-dropdown"
+import { ModeToggle } from "../mode-toggle"
 
 export const PromoNavbar: React.FC = () => {
   const { t } = useTranslation()
@@ -30,6 +31,7 @@ export const PromoNavbar: React.FC = () => {
         </nav>
         <div className="flex items-center gap-4">
           <LanguageDropdown />
+          <ModeToggle />
           <Link className={buttonVariants({ variant: 'outline', size: 'sm'})} to="/login">
             {t('auth.login.submit')}
           </Link>

@@ -40,8 +40,8 @@ function RouteComponent() {
 
         <div className="bg-background rounded-lg border shadow-sm p-8">
           <div className="flex justify-center mb-6">
-            <div className="h-12 w-12 rounded-full bg-gold-100 flex items-center justify-center">
-              <Mail className="h-6 w-6 text-gold-600" />
+            <div className="h-12 w-12 rounded-full bg-gold-100 dark:bg-gold-950 flex items-center justify-center">
+              <Mail className="h-6 w-6 text-gold-600 dark:text-gold-400" />
             </div>
           </div>
 

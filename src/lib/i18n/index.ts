@@ -3,7 +3,9 @@ import { initReactI18next } from 'react-i18next'
 import { resources } from './resources'
 
 const prepareLocale = () => {
-  return navigator.language.split('-')[0]
+  const code = navigator.language.split('-')[0]
+
+  return code === 'uk' ? 'uk' : 'en'
 }
 
 i18n.use(initReactI18next).init({

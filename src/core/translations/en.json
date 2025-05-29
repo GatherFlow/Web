@@ -243,6 +243,24 @@
           "Role",
           "Actions"
         ]
+      },
+      "form": {
+        "title": "Edit user",
+        "submit": "Edit"
+      },
+      "dropdown": {
+        "label": "Actions",
+        "trigger": "Open menu",
+        "items": [
+          "Edit user",
+          "Delete user"
+        ]
+      },
+      "alert": {
+        "title": "Are you absolutely sure to delete this user?",
+        "description": "This action cannot be undone",
+        "accept": "Yes",
+        "decline": "No"
       }
     },
     "sidebar": {

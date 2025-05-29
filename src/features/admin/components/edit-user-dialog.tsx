@@ -7,12 +7,14 @@ import type { AdminUser } from "@/core/types";
 import { editProfileSchema } from "@/features/users/schemas";
 import React, { type PropsWithChildren } from "react";
 import { useEditUserProfile } from "../mutations/useEditUserProfile";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   user: AdminUser
 }
 
 export const EditUserDialog: React.FC<PropsWithChildren<Props>> = ({ user, children }) => {
+  const { t } = useTranslation()
   const [opened, setOpen] = React.useState(false)
   const { mutateAsync } = useEditUserProfile()
 
@@ -60,13 +62,14 @@ export const EditUserDialog: React.FC<PropsWithChildren<Props>> = ({ user, child
               <form.AppField name="firstName">
                 {(field) => (
                   <field.FormItem className="w-1/2">
-                    <field.FormLabel>First Name</field.FormLabel>
+                    <field.FormLabel>{t('auth.first-name-label')}</field.FormLabel>
                     <field.FormControl>
                       <Input
                         type="text"
                         value={field.state.value}
                         onChange={(e) => field.handleChange(e.target.value)}
                         onBlur={field.handleBlur}
+                        placeholder={t('auth.first-name-placeholder')}
                       />
                     </field.FormControl>
                     <field.FormMessage />
@@ -76,13 +79,14 @@ export const EditUserDialog: React.FC<PropsWithChildren<Props>> = ({ user, child
               <form.AppField name="lastName">
                 {(field) => (
                   <field.FormItem className="w-1/2">
-                    <field.FormLabel>Last Name</field.FormLabel>
+                    <field.FormLabel>{t('auth.last-name-label')}</field.FormLabel>
                     <field.FormControl>
                       <Input
                         type="text"
                         value={field.state.value}
                         onChange={(e) => field.handleChange(e.target.value)}
                         onBlur={field.handleBlur}
+                        placeholder={t('auth.last-name-placeholder')}
                       />
                     </field.FormControl>
                     <field.FormMessage />
@@ -93,13 +97,14 @@ export const EditUserDialog: React.FC<PropsWithChildren<Props>> = ({ user, child
             <form.AppField name="username">
               {(field) => (
                 <field.FormItem>
-                  <field.FormLabel>Username</field.FormLabel>
+                  <field.FormLabel>{t('auth.username-label')}</field.FormLabel>
                   <field.FormControl>
                     <Input
                       type="text"
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
                       onBlur={field.handleBlur}
+                      placeholder={t('auth.username-placeholder')}
                     />
                   </field.FormControl>
                   <field.FormMessage />
@@ -109,11 +114,11 @@ export const EditUserDialog: React.FC<PropsWithChildren<Props>> = ({ user, child
             <form.AppField name="bio">
               {(field) => (
                 <field.FormItem>
-                  <field.FormLabel>Bio</field.FormLabel>
+                  <field.FormLabel>{t('auth.bio-label')}</field.FormLabel>
                   <field.FormControl>
                     <Textarea
                       className="resize-none"
-                      placeholder="Enter your bio"
+                      placeholder={t('auth.bio-placeholder')}
                       value={field.state.value}
                       onChange={(e) => field.handleChange(e.target.value)}
                     />
@@ -122,7 +127,7 @@ export const EditUserDialog: React.FC<PropsWithChildren<Props>> = ({ user, child
                 </field.FormItem>
               )}
             </form.AppField>
-            <Button>Edit</Button>
+            <Button>{t('admin.users.form.submit')}</Button>
           </form>
         </form.AppForm>
       </DialogContent>

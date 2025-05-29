@@ -2,6 +2,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import type { AdminUser } from "@/core/types"
 import { useState, type PropsWithChildren } from "react"
 import { useDeleteUser } from "../mutations/useDeleteUser"
+import { useTranslation } from "react-i18next"
 
 interface Props {
   user: AdminUser
@@ -9,6 +10,7 @@ interface Props {
 
 export const DeleteUserAlert: React.FC<PropsWithChildren<Props>> = ({ user, children }) => {
   const [opened, setOpen] = useState(false)
+  const { t } = useTranslation()
 
   const { mutateAsync } = useDeleteUser()
 
@@ -30,12 +32,12 @@ export const DeleteUserAlert: React.FC<PropsWithChildren<Props>> = ({ user, chil
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure to delete this user?</AlertDialogTitle>
-          <AlertDialogDescription>This action cannot be undone</AlertDialogDescription>
+          <AlertDialogTitle>{t('admin.users.alert.title')}</AlertDialogTitle>
+          <AlertDialogDescription>{t('admin.users.alert.descriptin')}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>No</AlertDialogCancel>
-          <AlertDialogAction onClick={handleSubmit}>Yes</AlertDialogAction>
+          <AlertDialogCancel>{t('admin.users.alert.decline')}</AlertDialogCancel>
+          <AlertDialogAction onClick={handleSubmit}>{t('admin.users.alert.accept')}</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

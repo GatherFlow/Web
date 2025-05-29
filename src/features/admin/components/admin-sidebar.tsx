@@ -42,7 +42,7 @@ export const AdminSidebar: React.FC<AdminStatusProps> = ({ healthStatus }) => {
       <SidebarContent>
         <div className="px-4 py-6 space-y-5">
           <div className="flex items-center gap-3">
-            {user?.avatar !== '' ? (
+            {user?.avatar !== '/' ? (
               <Avatar className='size-10'>
                 <AvatarImage src={user?.avatar} />
               </Avatar>

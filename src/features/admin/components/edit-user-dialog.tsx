@@ -4,7 +4,9 @@ import { Input } from "@/core/components/ui/input";
 import { useAppForm } from "@/core/components/ui/tanstack-form";
 import { Textarea } from "@/core/components/ui/textarea";
 import type { AdminUser } from "@/core/types";
+import { editProfileSchema } from "@/features/users/schemas";
 import React, { type PropsWithChildren } from "react";
+import { useEditUserProfile } from "../mutations/useEditUserProfile";
 
 interface Props {
   user: AdminUser
@@ -12,14 +14,36 @@ interface Props {
 
 export const EditUserDialog: React.FC<PropsWithChildren<Props>> = ({ user, children }) => {
   const [opened, setOpen] = React.useState(false)
+  const { mutateAsync } = useEditUserProfile()
+
+  const bio = user.bio ?? ''
 
   const form = useAppForm({
+    validators: { onSubmit: editProfileSchema },
     defaultValues: {
       firstName: user.firstName,
       lastName: user.lastName,
-      bio: user.bio
+      username: user.username,
+      bio,
+    },
+    onSubmit: async ({ value }) => {
+      await mutateAsync(
+        {
+          id: user.id,
+          ...value
+        },
+        {
+          onSuccess: () => setOpen(false)
+        }
+      )
     }
   })
+
+  const handleSubmit = React.useCallback((e: React.FormEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    form.handleSubmit()
+  }, [form])
   
   return (
     <Dialog open={opened} onOpenChange={(open) => setOpen(open)}>
@@ -31,7 +55,7 @@ export const EditUserDialog: React.FC<PropsWithChildren<Props>> = ({ user, child
           <DialogTitle>Edit user</DialogTitle>
         </DialogHeader>
         <form.AppForm>
-          <form className="flex flex-col gap-y-4">
+          <form className="flex flex-col gap-y-4" onSubmit={handleSubmit}>
             <div className="inline-flex gap-4">
               <form.AppField name="firstName">
                 {(field) => (
@@ -66,6 +90,22 @@ export const EditUserDialog: React.FC<PropsWithChildren<Props>> = ({ user, child
                 )}
               </form.AppField>
             </div>
+            <form.AppField name="username">
+              {(field) => (
+                <field.FormItem>
+                  <field.FormLabel>Username</field.FormLabel>
+                  <field.FormControl>
+                    <Input
+                      type="text"
+                      value={field.state.value}
+                      onChange={(e) => field.handleChange(e.target.value)}
+                      onBlur={field.handleBlur}
+                    />
+                  </field.FormControl>
+                  <field.FormMessage />
+                </field.FormItem>
+              )}
+            </form.AppField>
             <form.AppField name="bio">
               {(field) => (
                 <field.FormItem>

@@ -11,7 +11,7 @@ function RouteComponent() {
     <React.Fragment>
       <div className='mb-8'>
         <h2 className="text-3xl font-bold tracking-tight">
-          Privacy
+          Profile
         </h2>
         <p className="text-muted-foreground mt-1">Manage your profile information</p>
       </div>

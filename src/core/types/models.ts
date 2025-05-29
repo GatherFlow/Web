@@ -6,8 +6,9 @@ interface BaseUser {
   id: string
   firstName: string
   lastName: string
+  username: string
   email: string
-  bio: string
+  bio?: string
   role: Role
   isVerified: boolean
   avatar: string
@@ -36,4 +37,11 @@ interface HealthStatus {
   date: string
 }
 
-export type { BaseUser, HealthStatus, PublicUser, ResetSession, AdminUser }
+interface UserPrivacy {
+  isPrivate: boolean
+  hideOwned: boolean
+  hidePurchased: boolean
+  hideAppreciated: boolean
+}
+
+export type { BaseUser, HealthStatus, PublicUser, ResetSession, AdminUser, UserPrivacy }

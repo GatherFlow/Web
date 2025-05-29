@@ -4,6 +4,7 @@ import type { UserPrivacy } from "@/core/types";
 import React from "react";
 import { managePrivacySchema } from "../schemas";
 import { useManagePrivacy } from "../mutations/useManagePrivacy";
+import { useTranslation } from "react-i18next";
 
 export const ManagePrivacyForm: React.FC<{ privacy: UserPrivacy }> = (
   { privacy }
@@ -19,6 +20,8 @@ export const ManagePrivacyForm: React.FC<{ privacy: UserPrivacy }> = (
 const ManagePrivateProfile: React.FC<Pick<UserPrivacy, 'isPrivate'>> =(
   { isPrivate }
 ) => {
+  const { t } = useTranslation()
+
   const { mutateAsync, isPending } = useManagePrivacy()
 
   const form = useAppForm({
@@ -43,10 +46,10 @@ const ManagePrivateProfile: React.FC<Pick<UserPrivacy, 'isPrivate'>> =(
             <field.FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
               <div className="space-y-0.5">
                 <field.FormLabel className="text-base">
-                  Private profile
+                  {t('dashboard.privacy.preferences.0.title')}
                 </field.FormLabel>
                 <field.FormDescription>
-                  All your data will not be shown to other users
+                  {t('dashboard.privacy.preferences.0.description')}
                 </field.FormDescription>
               </div>
               <field.FormControl>
@@ -70,6 +73,8 @@ const ManagePrivateProfile: React.FC<Pick<UserPrivacy, 'isPrivate'>> =(
 const ManageOwnedTickets: React.FC<Pick<UserPrivacy, 'hideOwned'>> = (
   { hideOwned }
 ) => {
+  const { t } = useTranslation()
+
   const { mutateAsync, isPending } = useManagePrivacy()
 
   const form = useAppForm({
@@ -94,10 +99,10 @@ const ManageOwnedTickets: React.FC<Pick<UserPrivacy, 'hideOwned'>> = (
             <field.FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
               <div className="space-y-0.5">
                 <field.FormLabel className="text-base">
-                  Hide owned tickets
+                  {t('dashboard.privacy.preferences.1.title')}
                 </field.FormLabel>
                 <field.FormDescription>
-                  Tickets will not be discovered in search and found in your profile
+                  {t('dashboard.privacy.preferences.1.description')}
                 </field.FormDescription>
               </div>
               <field.FormControl>
@@ -121,6 +126,7 @@ const ManageOwnedTickets: React.FC<Pick<UserPrivacy, 'hideOwned'>> = (
 const ManagePurchasedTickets: React.FC<Pick<UserPrivacy, 'hidePurchased'>> = (
   { hidePurchased }
 ) => {
+  const { t } = useTranslation()
   const { mutateAsync, isPending } = useManagePrivacy()
 
   const form = useAppForm({
@@ -145,10 +151,10 @@ const ManagePurchasedTickets: React.FC<Pick<UserPrivacy, 'hidePurchased'>> = (
             <field.FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
               <div className="space-y-0.5">
                 <field.FormLabel className="text-base">
-                  Hide purchased tickets
+                  {t('dashboard.privacy.preferences.2.title')}
                 </field.FormLabel>
                 <field.FormDescription>
-                  Tickets will not be found in your profile
+                  {t('dashboard.privacy.preferences.2.description')}
                 </field.FormDescription>
               </div>
               <field.FormControl>
@@ -169,7 +175,10 @@ const ManagePurchasedTickets: React.FC<Pick<UserPrivacy, 'hidePurchased'>> = (
   )
 }
 
-const ManageAppreciatedTickets: React.FC<Pick<UserPrivacy, 'hideAppreciated'>> = ({ hideAppreciated }) => {
+const ManageAppreciatedTickets: React.FC<Pick<UserPrivacy, 'hideAppreciated'>> = (
+  { hideAppreciated }
+) => {
+  const { t } = useTranslation()
   const { mutateAsync, isPending } = useManagePrivacy()
 
   const form = useAppForm({
@@ -194,10 +203,10 @@ const ManageAppreciatedTickets: React.FC<Pick<UserPrivacy, 'hideAppreciated'>> =
             <field.FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
               <div className="space-y-0.5">
                 <field.FormLabel className="text-base">
-                  Hide appreciated tickets
+                  {t('dashboard.privacy.preferences.3.title')}
                 </field.FormLabel>
                 <field.FormDescription>
-                  Tickets will not be found in your profile
+                  {t('dashboard.privacy.preferences.3.description')}
                 </field.FormDescription>
               </div>
               <field.FormControl>

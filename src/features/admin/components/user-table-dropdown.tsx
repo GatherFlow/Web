@@ -5,6 +5,7 @@ import { EditUserDialog } from "./edit-user-dialog"
 import type { AdminUser } from "@/core/types"
 import { DeleteUserAlert } from "./delete-user-alert"
 import { useAuthStore } from "@/features/auth/stores"
+import { useTranslation } from "react-i18next"
 
 interface Props {
   user: AdminUser
@@ -12,21 +13,22 @@ interface Props {
 
 export const UserTableDropdown: React.FC<Props> = (props) => {
   const currentUser = useAuthStore((select) => select.user)
+  const { t } = useTranslation()
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-8 w-8 p-0">
-          <span className="sr-only">Open menu</span>
+          <span className="sr-only">{t('admin.users.table.dropdown.trigger')}</span>
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <DropdownMenuLabel>{t('admin.users.table.dropdown.label')}</DropdownMenuLabel>
         <EditUserDialog {...props}>
           <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
             <Edit className="mr-2 h-4 w-4" />
-            Edit user
+            {t('admin.users.table.dropdown.items.0')}
           </DropdownMenuItem>
         </EditUserDialog>
         <DropdownMenuSeparator />
@@ -37,7 +39,7 @@ export const UserTableDropdown: React.FC<Props> = (props) => {
             disabled={currentUser?.id === props.user.id}
           >
             <Trash2 className="mr-2 h-4 w-4" />
-            Delete user
+            {t('admin.users.table.dropdown.items.1')}
           </DropdownMenuItem>
         </DeleteUserAlert>
       </DropdownMenuContent>

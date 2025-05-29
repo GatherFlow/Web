@@ -3,6 +3,7 @@ import { getPrivacyOptions } from '@/features/users/queries'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const Route = createFileRoute('/dashboard/privacy')({
   loader: ({ context: { queryClient }}) => queryClient.ensureQueryData(getPrivacyOptions()),
@@ -10,15 +11,16 @@ export const Route = createFileRoute('/dashboard/privacy')({
 })
 
 function RouteComponent() {
+  const { t } = useTranslation()
   const { data: privacy } = useSuspenseQuery(getPrivacyOptions())
 
   return (
     <React.Fragment>
       <div className='mb-8'>
         <h2 className="text-3xl font-bold tracking-tight">
-          Privacy
+          {t('dashboard.privacy.title')}
         </h2>
-        <p className="text-muted-foreground mt-1">Manage your privacy settings</p>
+        <p className="text-muted-foreground mt-1">{t('dashboard.privacy.description')}</p>
       </div>
       <ManagePrivacyForm privacy={privacy} />
     </React.Fragment>

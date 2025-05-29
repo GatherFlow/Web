@@ -7,6 +7,7 @@ import { useAuthStore } from '@/features/auth/stores';
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, LayoutDashboard, LogOut, UsersRound } from "lucide-react";
 import React from "react";
+import { useTranslation } from 'react-i18next';
 
 interface AdminStatusProps {
   healthStatus: HealthStatus
@@ -16,16 +17,15 @@ export const AdminSidebar: React.FC<AdminStatusProps> = ({ healthStatus }) => {
   const isAdmin = useAuthStore((select) => select.isAdmin)
   const user = useAuthStore((select) => select.user)
 
+  const { t } = useTranslation()
   const { mutate } = useLogout()
 
   const links = [
     {
-      title: 'Dashboard',
       icon: <LayoutDashboard />,
       to: '/admin'
     },
     {
-      title: 'User Management',
       icon: <UsersRound />,
       to: '/admin/users'
     }
@@ -58,7 +58,7 @@ export const AdminSidebar: React.FC<AdminStatusProps> = ({ healthStatus }) => {
           </div>
           <div className="rounded-lg bg-red-50 dark:bg-red-950/20 p-3 border border-red-200 dark:border-red-800">
               <div className="flex justify-between items-center">
-                <span className="text-xs font-medium">System Status</span>
+                <span className="text-xs font-medium">{t('admin.sidebar.status')}</span>
                 <span className="text-xs bg-green-200 text-green-800 px-1.5 py-0.5 rounded-full">{healthStatus.message}</span>
               </div>
             </div>
@@ -69,7 +69,7 @@ export const AdminSidebar: React.FC<AdminStatusProps> = ({ healthStatus }) => {
               <SidebarMenuButton asChild>
                 <Link to={link.to}>
                   {link.icon}
-                  <span>{link.title}</span>
+                  <span>{t(`admin.sidebar.items.${i}`)}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -83,7 +83,7 @@ export const AdminSidebar: React.FC<AdminStatusProps> = ({ healthStatus }) => {
               <SidebarMenuButton asChild>
                 <Link to="/dashboard">
                   <ArrowLeft />
-                  Go to dashboard
+                  {t('admin.sidebar.to-dashboard')}
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -91,7 +91,7 @@ export const AdminSidebar: React.FC<AdminStatusProps> = ({ healthStatus }) => {
           <SidebarMenuItem>
             <SidebarMenuButton onClick={() => mutate()}>
               <LogOut />
-              Sign out
+              {t('auth.sign-out')}
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>

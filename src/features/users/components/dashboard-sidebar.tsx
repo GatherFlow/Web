@@ -6,31 +6,29 @@ import { useLogout } from '@/features/auth/mutations/useLogout'
 import { useAuthStore } from "@/features/auth/stores"
 import { Link } from "@tanstack/react-router"
 import { Calendar, Crown, LayoutDashboard, LogOut, Shield, UserRound } from "lucide-react"
+import { useTranslation } from 'react-i18next'
 
 export const DashboardSidebar = () => {
   const isAdmin = useAuthStore((select) => select.isAdmin)
   const user = useAuthStore((select) => select.user)
 
+  const { t } = useTranslation()
   const { mutate } = useLogout()
 
   const links = [
     {
-      title: 'Dashboard',
       icon: <LayoutDashboard />,
       to: '/dashboard'
     },
     {
-      title: 'Events',
       icon: <Calendar />,
       to: '/dashboard/events'
     },
     {
-      title: 'Privacy',
       icon: <Shield />,
       to: '/dashboard/privacy'
     },
     {
-      title: 'Profile',
       icon: <UserRound />,
       to: '/dashboard/profile'
     }
@@ -68,7 +66,7 @@ export const DashboardSidebar = () => {
               <SidebarMenuButton asChild>
                 <Link to={link.to}>
                   {link.icon}
-                  <span>{link.title}</span>
+                  <span>{t(`dashboard.sidebar.items.${i}`)}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -82,7 +80,7 @@ export const DashboardSidebar = () => {
               <SidebarMenuButton asChild>
                 <Link to='/admin'>
                   <Crown />
-                  Go to admin panel
+                  {t('dashboard.sidebar.to-admin-panel')}
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -92,7 +90,7 @@ export const DashboardSidebar = () => {
             <SidebarMenuItem className='w-full'>
               <SidebarMenuButton onClick={() => mutate()}>
                 <LogOut />
-                Sign out
+                {t('auth.sign-out')}
               </SidebarMenuButton>
             </SidebarMenuItem>
           </div>

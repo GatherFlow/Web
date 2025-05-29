@@ -1,5 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/core/components/ui/card'
+import { formatUptime } from '@/core/utils'
 import { systemStatusOptions } from '@/features/admin/queries'
+import { getTotalUsersOptions } from '@/features/statistics/queries'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import { Activity, Calendar, Users } from 'lucide-react'
@@ -7,25 +9,13 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 
 export const Route = createFileRoute('/admin/')({
+  beforeLoad: ({ context: { queryClient }}) => queryClient.ensureQueryData(getTotalUsersOptions()),
   component: RouteComponent,
 })
 
-function formatUptime(seconds: number) {
-  const days = Math.floor(seconds / (24 * 60 * 60));
-  seconds %= 24 * 60 * 60;
-
-  const hours = Math.floor(seconds / 3600);
-  seconds %= 3600;
-
-  const minutes = Math.floor(seconds / 60);
-  seconds = Math.floor(seconds % 60);
-
-
-  return days > 0 ? `${days}d ${hours}h ${minutes}m` : `${hours}h ${minutes}m`;
-}
-
 function RouteComponent() {
   const query = useSuspenseQuery(systemStatusOptions())
+  const { data: totalUsers } = useSuspenseQuery(getTotalUsersOptions())
   const { t } = useTranslation()
 
   return (
@@ -43,7 +33,7 @@ function RouteComponent() {
             <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">2,420</div>
+            <div className="text-2xl font-bold">{totalUsers}</div>
           </CardContent>
         </Card>
         <Card className='gap-4'>

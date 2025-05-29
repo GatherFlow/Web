@@ -13,7 +13,7 @@ export const PromoHeroSection = () => {
   ]
 
   return (
-    <section className="relative overflow-hidden py-20 md:py-32">
+    <section id="hero" className="relative overflow-hidden py-20 md:py-32">
       <div className="absolute inset-0 bg-gradient-to-r from-gold-50 to-gold-100 dark:from-gold-950/20 dark:to-gold-900/10" />
       <div className="absolute inset-0">
         <div className="h-full w-full bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px]" />

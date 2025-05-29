@@ -19,7 +19,6 @@ import { Route as AdminIndexImport } from './routes/admin/index'
 import { Route as DashboardProfileImport } from './routes/dashboard/profile'
 import { Route as DashboardPrivacyImport } from './routes/dashboard/privacy'
 import { Route as DashboardEventsImport } from './routes/dashboard/events'
-import { Route as DashboardBillingImport } from './routes/dashboard/billing'
 import { Route as AdminUsersImport } from './routes/admin/users'
 import { Route as authVerifyEmailImport } from './routes/(auth)/verify-email'
 import { Route as authSignupImport } from './routes/(auth)/signup'
@@ -76,12 +75,6 @@ const DashboardPrivacyRoute = DashboardPrivacyImport.update({
 const DashboardEventsRoute = DashboardEventsImport.update({
   id: '/events',
   path: '/events',
-  getParentRoute: () => DashboardRouteRoute,
-} as any)
-
-const DashboardBillingRoute = DashboardBillingImport.update({
-  id: '/billing',
-  path: '/billing',
   getParentRoute: () => DashboardRouteRoute,
 } as any)
 
@@ -193,13 +186,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsersImport
       parentRoute: typeof AdminRouteImport
     }
-    '/dashboard/billing': {
-      id: '/dashboard/billing'
-      path: '/billing'
-      fullPath: '/dashboard/billing'
-      preLoaderRoute: typeof DashboardBillingImport
-      parentRoute: typeof DashboardRouteImport
-    }
     '/dashboard/events': {
       id: '/dashboard/events'
       path: '/events'
@@ -276,7 +262,6 @@ const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
 )
 
 interface DashboardRouteRouteChildren {
-  DashboardBillingRoute: typeof DashboardBillingRoute
   DashboardEventsRoute: typeof DashboardEventsRoute
   DashboardPrivacyRoute: typeof DashboardPrivacyRoute
   DashboardProfileRoute: typeof DashboardProfileRoute
@@ -284,7 +269,6 @@ interface DashboardRouteRouteChildren {
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
-  DashboardBillingRoute: DashboardBillingRoute,
   DashboardEventsRoute: DashboardEventsRoute,
   DashboardPrivacyRoute: DashboardPrivacyRoute,
   DashboardProfileRoute: DashboardProfileRoute,
@@ -322,7 +306,6 @@ export interface FileRoutesByFullPath {
   '/signup': typeof authSignupRoute
   '/verify-email': typeof authVerifyEmailRoute
   '/admin/users': typeof AdminUsersRoute
-  '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
@@ -339,7 +322,6 @@ export interface FileRoutesByTo {
   '/signup': typeof authSignupRoute
   '/verify-email': typeof authVerifyEmailRoute
   '/admin/users': typeof AdminUsersRoute
-  '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
@@ -360,7 +342,6 @@ export interface FileRoutesById {
   '/(auth)/signup': typeof authSignupRoute
   '/(auth)/verify-email': typeof authVerifyEmailRoute
   '/admin/users': typeof AdminUsersRoute
-  '/dashboard/billing': typeof DashboardBillingRoute
   '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
@@ -382,7 +363,6 @@ export interface FileRouteTypes {
     | '/signup'
     | '/verify-email'
     | '/admin/users'
-    | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
@@ -398,7 +378,6 @@ export interface FileRouteTypes {
     | '/signup'
     | '/verify-email'
     | '/admin/users'
-    | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
@@ -417,7 +396,6 @@ export interface FileRouteTypes {
     | '/(auth)/signup'
     | '/(auth)/verify-email'
     | '/admin/users'
-    | '/dashboard/billing'
     | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
@@ -481,7 +459,6 @@ export const routeTree = rootRoute
     "/dashboard": {
       "filePath": "dashboard/route.tsx",
       "children": [
-        "/dashboard/billing",
         "/dashboard/events",
         "/dashboard/privacy",
         "/dashboard/profile",
@@ -508,10 +485,6 @@ export const routeTree = rootRoute
     "/admin/users": {
       "filePath": "admin/users.tsx",
       "parent": "/admin"
-    },
-    "/dashboard/billing": {
-      "filePath": "dashboard/billing.tsx",
-      "parent": "/dashboard"
     },
     "/dashboard/events": {
       "filePath": "dashboard/events.tsx",

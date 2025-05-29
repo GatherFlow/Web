@@ -147,8 +147,13 @@
     "first-name-placeholder": "Enter first name",
     "second-name-label": "Second Name",
     "second-name-placeholder": "Enter second name",
+    "username-label": "Username",
+    "username-placeholder": "Enter username",
+    "bio-label": "Bio",
+    "bio-placeholder": "Enter bio",
     "confirm-password-label": "Confirm password",
-    "confirm-password-placeholder": "Enter password again"
+    "confirm-password-placeholder": "Enter password again",
+    "sign-out": "Sign out"
   },
   "validation": {
     "invalid-email": "Email is required",
@@ -162,5 +167,91 @@
       "English",
       "Ukrainian"
     ]
+  },
+  "change-theme": {
+    "label": "Toggle theme",
+    "dark": "Dark",
+    "light": "Light",
+    "system": "System"
+  },
+  "dashboard": {
+    "sidebar": {
+      "items": [
+        "Dashboard",
+        "Events",
+        "Privacy",
+        "Profile"
+      ],
+      "to-admin-panel": "Go to admin panel"
+    },
+    "main": {
+      "greetings": "Welcome back"
+    },
+    "events": {
+      "title": "Events",
+      "description": "Manage your events and track registrations"
+    },
+    "privacy": {
+      "title": "Privacy",
+      "description": "Manage your privacy settings",
+      "preferences": [
+        {
+          "title": "Private profile",
+          "description": "All your data will not be shown to other users"
+        },
+        {
+          "title": "Hide owned tickets",
+          "description": "Tickets will not be discovered in search and found in your profile"
+        },
+        {
+          "title": "Hide purchased tickets",
+          "description": "Tickets will not be found in your profile"
+        },
+        {
+          "title": "Hide appreciated tickets",
+          "description": "Tickets will not be found in your profile"
+        }
+      ]
+    },
+    "profile": {
+      "title": "Profile",
+      "description": "Manage your profile information",
+      "update-action": "Update"
+    }
+  },
+  "admin": {
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "description": "Platform overview and key metrics"
+    },
+    "analytics": [
+      "Total Users",
+      "Active Events",
+      "Platform uptime"
+    ],
+    "users": {
+      "title": "User Management",
+      "description": "Manage user accounts and permissions",
+      "table": {
+        "title": "Users",
+        "description": "A list of all users in the system",
+        "head": [
+          "User",
+          "Plan",
+          "Events",
+          "Type",
+          "Role",
+          "Actions"
+        ]
+      }
+    },
+    "sidebar": {
+      "status": "System Status",
+      "items": [
+        "Dashboard",
+        "User Management"
+      ],
+      "to-dashboard": "Go to dashboard"
+    }
   }
 }

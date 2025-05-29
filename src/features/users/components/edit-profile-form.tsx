@@ -6,10 +6,12 @@ import { editProfileSchema } from "../schemas";
 import { Textarea } from "@/core/components/ui/textarea";
 import { useAuthStore } from "@/features/auth/stores";
 import { useEditProfile } from "../mutations/useEditProfile";
+import { useTranslation } from "react-i18next";
 
 export const EditProfileForm: React.FC = () => {
   const user = useAuthStore((select) => select.user)
 
+  const { t } = useTranslation()
   const { mutateAsync } = useEditProfile()
 
   const form = useAppForm({
@@ -38,13 +40,14 @@ export const EditProfileForm: React.FC = () => {
           <form.AppField name="firstName">
             {(field) => (
               <field.FormItem className="w-1/2">
-                <field.FormLabel>First Name</field.FormLabel>
+                <field.FormLabel>{t('auth.first-name-label')}</field.FormLabel>
                 <field.FormControl>
                   <Input
                     type="text"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
+                    placeholder={t('auth.first-name-placeholder')}
                     autoFocus
                   />
                 </field.FormControl>
@@ -55,13 +58,14 @@ export const EditProfileForm: React.FC = () => {
           <form.AppField name="lastName">
             {(field) => (
               <field.FormItem className="w-1/2">
-                <field.FormLabel>Last Name</field.FormLabel>
+                <field.FormLabel>{t('auth.last-name-label')}</field.FormLabel>
                 <field.FormControl>
                   <Input
                     type="text"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
+                    placeholder={t('auth.last-name-placeholder')}
                   />
                 </field.FormControl>
                 <field.FormMessage />
@@ -72,13 +76,14 @@ export const EditProfileForm: React.FC = () => {
         <form.AppField name="username">
           {(field) => (
             <field.FormItem>
-              <field.FormLabel>Username</field.FormLabel>
+              <field.FormLabel>{t('auth.username-label')}</field.FormLabel>
               <field.FormControl>
                 <Input
                   type="text"
                   value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
+                  placeholder={t('auth.username-placeholder')}
                 />
               </field.FormControl>
               <field.FormMessage />
@@ -88,12 +93,13 @@ export const EditProfileForm: React.FC = () => {
         <form.AppField name="bio">
           {(field) => (
             <field.FormItem>
-              <field.FormLabel>Bio</field.FormLabel>
+              <field.FormLabel>{t('auth.bio-label')}</field.FormLabel>
               <field.FormControl>
                 <Textarea
                   value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}
                   onBlur={field.handleBlur}
+                  placeholder={t('auth.bio-placeholder')}
                 />
               </field.FormControl>
               <field.FormMessage />
@@ -101,7 +107,7 @@ export const EditProfileForm: React.FC = () => {
           )}
         </form.AppField>
         <Button>
-          Update
+          {t('dashboard.profile.update-action')}
         </Button>
       </form>
     </form.AppForm>

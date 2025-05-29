@@ -4,6 +4,7 @@ import { usersOptions } from '@/features/admin/queries'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { createFileRoute } from '@tanstack/react-router'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const Route = createFileRoute('/admin/users')({
   loader: ({ context: { queryClient }}) => queryClient.ensureQueryData(usersOptions()),
@@ -11,20 +12,21 @@ export const Route = createFileRoute('/admin/users')({
 })
 
 function RouteComponent() {
+  const { t } = useTranslation()
   const { data: users } = useSuspenseQuery(usersOptions())
 
   return (
     <React.Fragment>
       <div className='mb-8'>
         <h2 className="text-3xl font-bold tracking-tight">
-          User Management
+          {t('admin.users.title')}
         </h2>
-        <p className="text-muted-foreground mt-1">Manage user accounts and permissions</p>
+        <p className="text-muted-foreground mt-1">{t('admin.users.description')}</p>
       </div>
       <Card>
         <CardHeader className='px-6'>
-          <CardTitle>Users</CardTitle>
-          <CardDescription>A list of all users in the system</CardDescription>
+          <CardTitle>{t('admin.users.table.title')}</CardTitle>
+          <CardDescription>{t('admin.users.table.description')}</CardDescription>
         </CardHeader>
         <CardContent>
           <UsersTable users={users} />

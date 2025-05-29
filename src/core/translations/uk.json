@@ -11,7 +11,7 @@
         "text": "Мобільний застосунок вже скоро!"
       },
       "catchphrase": {
-        "fulltext": "Organize events with ease",
+        "fulltext": "Легко організовуйте події",
         "accent": "Легко",
         "text": "Організовуйте події"
       },
@@ -97,48 +97,48 @@
   },
   "auth": {
     "login": {
-      "title": "Welcome back",
-      "description": "Enter your credentials to access your account",
+      "title": "З поверненням",
+      "description": "Введіть свої облікові данні для входу",
       "submit": "Увійти",
       "submitting": "Вхід...",
       "offer": "Вже є акаунт?"
     },
     "signup": {
-      "title": "Create an account",
-      "description": "Enter your information to get started with GatherFlow",
+      "title": "Створити акаунт",
+      "description": "Введіть особисті дані, щоб почати користуватися GatherFlow",
       "submit": "Зареєструватися",
       "submitting": "Реєстрація...",
       "offer": "Немає акаунту?"
     },
     "verify-email": {
-      "title": "Verify your email",
-      "description": "We've sent a 4-digit code to",
-      "invalid-code": "Don't receive a code?",
-      "verify-action": "Verify email",
-      "resend-action": "Resend code"
+      "title": "Підтвердження пошти",
+      "description": "Ми надіслали 4-значний код на адресу",
+      "invalid-code": "Не отримали код?",
+      "verify-action": "Підтвердити пошту",
+      "resend-action": "Надіслати код ще раз"
     },
     "forgot-password": {
-      "title": "Forgot Password",
+      "title": "Забув пароль",
       "email-step": {
-        "description": "Enter your email address and we'll send you a code to reset your password",
-        "submit": "Send Reset Code",
-        "submitting": "Sending..."
+        "description": "Введіть адресу електронної пошти і ми надішлемо вам код для скидання паролю",
+        "submit": "Надіслати код",
+        "submitting": "Надсилання..."
       },
       "verification-step": {
-        "description": "Enter password reset code, we've sent you on email",
-        "submit": "Verify email",
-        "submitting": "Verifying..."
+        "description": "Введіть код для скидання паролю, надісланий вам на пошту",
+        "submit": "Підтвердити пошту",
+        "submitting": "Підтвердження..."
       },
       "reset-step": {
-        "description": "Enter new password",
-        "submit": "Change password",
-        "submitting": "Changing..."
+        "description": "Введіть новий пароль",
+        "submit": "Змінити пароль",
+        "submitting": "Зміна..."
       }
     },
-    "remember-password": "Remember your password?",
-    "back-to-login": "Back to login",
-    "back-to-home": "Back to home",
-    "thirdparty-fallback": "Or continue with",
+    "remember-password": "Пригадали пароль?",
+    "back-to-login": "Повернутись до входу",
+    "back-to-home": "Повернутись на головну",
+    "thirdparty-fallback": "Або продовжити через",
     "email-label": "Пошта",
     "email-placeholder": "Введіть пошту",
     "password-label": "Пароль",
@@ -147,13 +147,13 @@
     "first-name-placeholder": "Введіть імʼя",
     "second-name-label": "Прізвище",
     "second-name-placeholder": "Введіть прізвище",
-    "username-label": "Username",
-    "username-placeholder": "Enter username",
-    "bio-label": "Bio",
-    "bio-placeholder": "Enter bio",
+    "username-label": "Ім'я користувача",
+    "username-placeholder": "Введіть ім'я користувача",
+    "bio-label": "Про себе",
+    "bio-placeholder": "Напишіть про себе",
     "confirm-password-label": "Підтвердіть пароль",
     "confirm-password-placeholder": "Введіть пароль ще раз",
-    "sign-out": "Sign out"
+    "sign-out": "Вийти"
   },
   "validation": {
     "invalid-email": "Пошта є обовʼязковою",
@@ -169,89 +169,89 @@
     ]
   },
   "change-theme": {
-    "label": "Toggle theme",
-    "dark": "Dark",
-    "light": "Light",
-    "system": "System"
+    "label": "Змінити тему",
+    "dark": "Темна",
+    "light": "Світла",
+    "system": "Системна"
   },
   "dashboard": {
     "sidebar": {
       "items": [
-        "Dashboard",
-        "Events",
-        "Privacy",
-        "Profile"
+        "Панель",
+        "Події",
+        "Приватність",
+        "Профіль"
       ],
-      "to-admin-panel": "Go to admin panel"
+      "to-admin-panel": "Перейти до адмін-панелі"
     },
     "main": {
-      "greetings": "Welcome back"
+      "greetings": "З поверненням"
     },
     "events": {
-      "title": "Events",
-      "description": "Manage your events and track registrations"
+      "title": "Події",
+      "description": "Керуйте своїми подіями та відстежуйте регістрації"
     },
     "privacy": {
-      "title": "Privacy",
-      "description": "Manage your privacy settings",
+      "title": "Приватність",
+      "description": "Керуйте налаштуваннями приватності",
       "preferences": [
         {
-          "title": "Private profile",
-          "description": "All your data will not be shown to other users"
+          "title": "Приватний профіль",
+          "description": "Усі ваші дані будуть приховані від інших користувачів"
         },
         {
-          "title": "Hide owned tickets",
-          "description": "Tickets will not be discovered in search and found in your profile"
+          "title": "Приховати мої квитки",
+          "description": "Квитки не будуть відображатися у пошуку та вашому профілі"
         },
         {
-          "title": "Hide purchased tickets",
-          "description": "Tickets will not be found in your profile"
+          "title": "Приховати куплені квитки",
+          "description": "Куплені квитки не будуть відображатися у вашому профілі"
         },
         {
-          "title": "Hide appreciated tickets",
-          "description": "Tickets will not be found in your profile"
+          "title": "Приховати вподобані квитки",
+          "description": "Вподобані квитки не будуть відображатися у вашому профілі"
         }
       ]
     },
     "profile": {
-      "title": "Profile",
-      "description": "Manage your profile information",
-      "update-action": "Update"
+      "title": "Профіль",
+      "description": "Керуйте особистою інформацією",
+      "update-action": "Оновити"
     }
   },
   "admin": {
     "dashboard": {
-      "title": "Admin Dashboard",
-      "description": "Platform overview and key metrics"
+      "title": "Панель адміністратора",
+      "description": "Огляд платформи та ключові метрики"
     },
     "analytics": [
-      "Total Users",
-      "Active Events",
-      "Platform uptime"
+      "Всього користувачів",
+      "Активні події",
+      "Час роботи"
     ],
     "users": {
-      "title": "User Management",
-      "description": "Manage user accounts and permissions",
+      "title": "Керування користувачами",
+      "description": "Керуйте обліковими записами та правами доступу",
       "table": {
-        "title": "Users",
-        "description": "A list of all users in the system",
+        "title": "Користувачі",
+        "description": "Список усіх користувачів системи",
         "head": [
-          "User",
-          "Plan",
-          "Events",
-          "Type",
-          "Role",
-          "Actions"
+          "Користувач",
+          "Тариф",
+          "Події",
+          "Тип",
+          "Роль",
+          "Дії"
         ]
       }
     },
     "sidebar": {
       "status": "System Status",
       "items": [
-        "Dashboard",
-        "User Management"
+        "Панель",
+        "Управління користувачами"
       ],
-      "to-dashboard": "Go to dashboard"
+      "to-dashboard": "Перейти до панелі"
     }
   }
 }

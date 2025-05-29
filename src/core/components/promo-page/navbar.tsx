@@ -17,19 +17,19 @@ export const PromoNavbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-8 2xl:max-w-[1400px] flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+      <div className="container mx-auto px-8 2xl:max-w-[1400px] grid grid-cols-3 h-16 items-center">
+        <Link to="/" className="flex items-center justify-start gap-2">
           <Logo className="size-8" />
           <span className="text-xl font-bold max-lg:hidden">GatherFlow</span>
         </Link>
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center justify-center gap-6">
           {links.map((link, index) => (
             <a key={index} href={`#${link.toLowerCase()}`} className="text-sm font-medium hover:text-primary">
               {link}
             </a>
           ))}
         </nav>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-end gap-4">
           <LanguageDropdown />
           <ModeToggle />
           <Link className={buttonVariants({ variant: 'outline', size: 'sm'})} to="/login">

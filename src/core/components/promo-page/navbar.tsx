@@ -26,7 +26,7 @@ export const PromoNavbar: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-8 2xl:max-w-[1400px] grid grid-cols-3 h-16 items-center">
+      <div className="container mx-auto px-8 2xl:max-w-[1400px] flex justify-between min-mid:grid min-md:grid-cols-3 h-16 items-center">
         <a href="/#hero" className="flex items-center justify-start gap-2">
           <Logo className="size-8" />
           <span className="text-xl font-bold max-lg:hidden">GatherFlow</span>

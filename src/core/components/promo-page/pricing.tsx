@@ -2,6 +2,7 @@ import { CheckCircle } from "lucide-react"
 import { Button } from "../ui/button"
 import { motion } from "motion/react"
 import { useTranslation } from "react-i18next"
+import { Link } from "@tanstack/react-router"
 
 export const PromoPricingSection = () => {
   const { t } = useTranslation()
@@ -80,8 +81,10 @@ export const PromoPricingSection = () => {
                   </li>
                 ))}
               </ul>
-              <Button variant={popular ? "default" : "outline"} className="w-full">
-                {t('promo.pricing.action')}
+              <Button variant={popular ? "default" : "outline"} className="w-full" asChild>
+                <Link to="/login">
+                  {t('promo.pricing.action')}
+                </Link>
               </Button>
             </motion.div>
           ))}

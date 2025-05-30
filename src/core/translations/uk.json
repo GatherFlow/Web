@@ -17,6 +17,7 @@
       },
       "description": "GatherFlow спрощує планування заходів, керування учасниками та взаємодію з ними. Створюйте незабутні події без стресу.",
       "action": "Почати",
+      "download-action": "Завантажити додаток",
       "trust-section": "Організатори подій довіряють GatherFlow"
     },
     "logos": {
@@ -145,8 +146,8 @@
     "password-placeholder": "Введіть ваш пароль",
     "first-name-label": "Імʼя",
     "first-name-placeholder": "Введіть імʼя",
-    "second-name-label": "Прізвище",
-    "second-name-placeholder": "Введіть прізвище",
+    "last-name-label": "Прізвище",
+    "last-name-placeholder": "Введіть прізвище",
     "username-label": "Ім'я користувача",
     "username-placeholder": "Введіть ім'я користувача",
     "bio-label": "Про себе",
@@ -243,6 +244,20 @@
           "Роль",
           "Дії"
         ]
+      },
+      "dropdown": {
+        "label": "Дії",
+        "trigger": "Відкрити меню",
+        "items": [
+          "Редагувати",
+          "Видалити"
+        ]
+      },
+      "alert": {
+        "title": "Ви дійсно впевнені, що хочете видалити цього користувача?",
+        "description": "Ця дія не може бути скасована",
+        "accept": "Так",
+        "decline": "Ні"
       }
     },
     "sidebar": {

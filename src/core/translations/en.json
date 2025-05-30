@@ -17,6 +17,7 @@
       },
       "description": "GatherFlow simplifies event planning, attendee management, and engagement. Create memorable experiences without the stress.",
       "action": "Get Started",
+      "download-action": "Download app",
       "trust-section": "Event organizers trust GatherFlow"
     },
     "logos": {
@@ -145,8 +146,8 @@
     "password-placeholder": "Enter password",
     "first-name-label": "First Name",
     "first-name-placeholder": "Enter first name",
-    "second-name-label": "Second Name",
-    "second-name-placeholder": "Enter second name",
+    "last-name-label": "Last Name",
+    "last-name-placeholder": "Enter last name",
     "username-label": "Username",
     "username-placeholder": "Enter username",
     "bio-label": "Bio",

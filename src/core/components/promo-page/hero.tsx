@@ -1,6 +1,7 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { Button } from "../ui/button";
 import { useTranslation } from "react-i18next";
+import { Link } from "@tanstack/react-router";
 
 export const PromoHeroSection = () => {
   const { t } = useTranslation()
@@ -22,7 +23,7 @@ export const PromoHeroSection = () => {
         <div className="grid gap-12 md:grid-cols-2 md:gap-16 items-center">
           <div className="space-y-8">
             <div className="space-y-6">
-              <div className="inline-flex items-center rounded-full border border-gold-200 bg-white px-3 py-1 text-sm dark:border-gold-800 dark:bg-gold-950/40">
+              <div className="inline-flex items-center rounded-full border border-gold-200 bg-white pl-1 pr-2 py-1 text-sm dark:border-gold-800 dark:bg-gold-950/40">
                 <span className="mr-1 rounded-full bg-gold-500 px-1.5 py-0.5 text-xs text-black font-medium">
                   {t('promo.hero.badge.accent')}
                 </span>
@@ -39,9 +40,15 @@ export const PromoHeroSection = () => {
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg">
-                {t('promo.hero.action')}
-                <ArrowRight className="ml-2 h-4 w-4" />
+              <Button size="lg" asChild>
+                <Link to="/login">
+                  {t('promo.hero.action')}
+                  <ArrowRight className="ml-2 size-4" />
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg">
+                <Download className="ml-2 size-4" />
+                {t('promo.hero.download-action')}
               </Button>
             </div>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
@@ -70,7 +77,7 @@ export const PromoHeroSection = () => {
             <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-r from-gold-400 to-gold-600 opacity-30 blur-xl" />
             <div className="relative rounded-xl border border-border/50 bg-background/95 p-1 shadow-xl backdrop-blur">
               <img
-                src="https://kzmoey6ooana4gd7euyp.lite.vusercontent.net/placeholder.svg?height=600&width=800"
+                src="img/hero.webp"
                 alt="GatherFlow Dashboard"
                 width={800}
                 height={600}

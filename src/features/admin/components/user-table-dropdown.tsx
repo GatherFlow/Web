@@ -19,16 +19,16 @@ export const UserTableDropdown: React.FC<Props> = (props) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-8 w-8 p-0">
-          <span className="sr-only">{t('admin.users.table.dropdown.trigger')}</span>
+          <span className="sr-only">{t('admin.users.dropdown.trigger')}</span>
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>{t('admin.users.table.dropdown.label')}</DropdownMenuLabel>
+        <DropdownMenuLabel>{t('admin.users.dropdown.label')}</DropdownMenuLabel>
         <EditUserDialog {...props}>
           <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
             <Edit className="mr-2 h-4 w-4" />
-            {t('admin.users.table.dropdown.items.0')}
+            {t('admin.users.dropdown.items.0')}
           </DropdownMenuItem>
         </EditUserDialog>
         <DropdownMenuSeparator />
@@ -39,7 +39,7 @@ export const UserTableDropdown: React.FC<Props> = (props) => {
             disabled={currentUser?.id === props.user.id}
           >
             <Trash2 className="mr-2 h-4 w-4" />
-            {t('admin.users.table.dropdown.items.1')}
+            {t('admin.users.dropdown.items.1')}
           </DropdownMenuItem>
         </DeleteUserAlert>
       </DropdownMenuContent>

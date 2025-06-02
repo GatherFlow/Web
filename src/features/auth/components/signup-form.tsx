@@ -56,14 +56,14 @@ export const SignupForm: React.FC = () => {
           <form.AppField name="lastName">
             {(field) => (
               <field.FormItem className="w-1/2">
-                <field.FormLabel>{t('auth.second-name-label')}</field.FormLabel>
+                <field.FormLabel>{t('auth.last-name-label')}</field.FormLabel>
                 <field.FormControl>
                   <Input
                     type="text"
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
-                    placeholder={t('auth.second-name-placeholder')}
+                    placeholder={t('auth.last-name-placeholder')}
                     disabled={isPending}
                   />
                 </field.FormControl>

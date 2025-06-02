@@ -1,12 +1,6 @@
-import type { Event, EventSettings, Maybe } from "@/core/types"
+import type { Event, EventSettings, GenericResponse } from "@/core/types"
 import { queryOptions } from "@tanstack/react-query"
 import { EventNotFoundError } from "../erorrs"
-
-type GenericResponse<T> = {
-  status: string
-  description: Maybe<string>
-  data: T
-}
 
 export const userEventsOptions = () => {
   return queryOptions({

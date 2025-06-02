@@ -9,6 +9,7 @@ import { EventNotFoundError } from '@/features/events/erorrs'
 import { useDeleteEvent } from '@/features/events/mutations/useDeleteEvent'
 import { eventOptions, eventSettiongsOptions } from '@/features/events/queries'
 import { CreateTicketDialog } from '@/features/tickets/components/create-ticket-dialog'
+import { ManageTicketDialog } from '@/features/tickets/components/manage-ticket-dialog'
 import { eventTickets } from '@/features/tickets/queries'
 import { useQueryErrorResetBoundary, useSuspenseQuery } from '@tanstack/react-query'
 import { ErrorComponent, createFileRoute, useRouter, type ErrorComponentProps } from '@tanstack/react-router'
@@ -90,8 +91,19 @@ function RouteComponent() {
             <CreateTicketDialog id={event.data.id} />
           </div>
           <div className='flex flex-col gap-3'>
-            {tickets.map((ticket, index) => (
-              <div key={index}>{ticket.title}</div>
+            {tickets.data.map((ticket, index) => (
+              <ManageTicketDialog key={index} ticket={ticket}>
+                <div className='inline-flex items-start justify-between w-full p-3 rounded-lg border  border-border bg-input/30'>
+                  <div className='space-y-2'>
+                    <p className='font-bold'>{ticket.title}</p>
+                    <p className='text-muted-foreground'>{ticket.description}</p>
+                  </div>
+                  <div className='space-y-2'>
+                    <p>{ticket.amount - ticket.stock} left</p>
+                    <p>${ticket.price}</p>
+                  </div>
+                </div>
+              </ManageTicketDialog>
             ))}
           </div>
         </TabsContent>

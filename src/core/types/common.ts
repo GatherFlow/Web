@@ -8,4 +8,10 @@ interface ApiError {
 	timestamp: string
 }
 
-export type { ApiError, Maybe }
+type GenericResponse<T> = {
+  status: string
+  description: Maybe<string>
+  data: T
+}
+
+export type { ApiError, Maybe, GenericResponse }

@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query"
 export const useResendCode = () => {
   return useMutation({
     mutationFn: async () => {
-      const url = '/api/resend-code'
+      const url = '/user/resend-code'
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.POST,

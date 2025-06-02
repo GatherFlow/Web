@@ -8,7 +8,7 @@ export const useManagePrivacy = () => {
   
   return useMutation({
     mutationFn: async (data: ManagePrivacyValues) => {
-      const url = '/api/users/privacy'
+      const url = '/user/users/privacy'
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.PUT,

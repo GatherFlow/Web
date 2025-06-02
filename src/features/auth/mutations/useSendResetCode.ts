@@ -12,7 +12,7 @@ export const useSendResetCode = () => {
   
   return useMutation({
     mutationFn: async (data: SendResetCodeValues) => {
-      const url = '/api/request-password-reset'
+      const url = '/user/request-password-reset'
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.POST,

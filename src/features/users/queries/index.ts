@@ -5,7 +5,7 @@ export const getCurrentUserOptions = () => {
   return queryOptions({
     queryKey: ['current-options'],
     queryFn: async () => {
-      const url = '/api/me'
+      const url = '/user/me'
 
       const response = await fetch(url, {
         credentials: 'include'
@@ -26,7 +26,7 @@ export const getPrivacyOptions = () => {
   return queryOptions({
     queryKey: ['users', 'privacy'],
     queryFn: async () => {
-      const url = '/api/users/privacy'
+      const url = '/user/users/privacy'
 
       const response = await fetch(url, {
         credentials: 'include'

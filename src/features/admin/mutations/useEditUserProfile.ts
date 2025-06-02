@@ -8,7 +8,7 @@ export const useEditUserProfile = () => {
 
   return useMutation({
     mutationFn: async ({ id, ...rest }: EditProfileValues & { id: string }) => {
-      const url = `/api/admin/users/${id}/profile`
+      const url = `/user/admin/users/${id}/profile`
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.PUT,

@@ -15,7 +15,7 @@ export const useLogin = () => {
 
   return useMutation({
     mutationFn: async (data: LoginValues) => {
-      const url = `/api/login`
+      const url = `/user/login`
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.POST,

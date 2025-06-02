@@ -5,7 +5,7 @@ export const currentUserOptions = () => {
   return queryOptions({
     queryKey: ['me'],
     queryFn: async () => {
-      const url = '/api/me'
+      const url = '/user/me'
 
       const response = await fetch(url, {
         credentials: 'include'

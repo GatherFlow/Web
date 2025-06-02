@@ -12,7 +12,7 @@ export const useResetPassword = () => {
 
   return useMutation({
     mutationFn: async (data: ResetPasswordValues) => {
-      const url = '/api/reset-password'
+      const url = '/user/reset-password'
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.PUT,

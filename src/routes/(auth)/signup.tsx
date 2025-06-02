@@ -48,7 +48,7 @@ function RouteComponent() {
   }
 
   const handleOAuthRedirect = () => {
-    window.location.href = '/api/oauth/google'
+    window.location.href = '/user/oauth/google'
   }
 
   return (

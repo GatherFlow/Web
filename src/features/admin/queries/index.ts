@@ -5,7 +5,7 @@ const systemStatusOptions = () => {
   return queryOptions({
     queryKey: ['health'],
     queryFn: async () => {
-      const response = await fetch('/api/health', {
+      const response = await fetch('/user/health', {
         credentials: 'include'
       })
 
@@ -21,7 +21,7 @@ const usersOptions = () => {
   return queryOptions({
     queryKey: ['users'],
     queryFn: async () => {
-      const response = await fetch('/api/admin/users', {
+      const response = await fetch('/user/admin/users', {
         credentials: 'include'
       })
 

@@ -32,10 +32,10 @@ export default defineConfig(({ mode }) => {
       host: true,
       origin: `http://localhost:9091`,
       proxy: {
-        '/api': {
+        '/user': {
           target: 'https://bots.innova.ua/api/user',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, ''),
+          rewrite: (path) => path.replace(/^\/user/, ''),
           secure: false,
         },
         '/events': {

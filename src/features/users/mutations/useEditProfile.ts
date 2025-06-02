@@ -10,7 +10,7 @@ export const useEditProfile = () => {
 
   return useMutation({
     mutationFn: async (data: EditProfileValues) => {
-      const url = '/api/users/profile'
+      const url = '/user/users/profile'
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.PUT,

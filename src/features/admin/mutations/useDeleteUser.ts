@@ -8,7 +8,7 @@ export const useDeleteUser = () => {
 
   return useMutation({
     mutationFn: async ({ id }: DeleteUserValues) => {
-      const url = `/api/admin/users/${id}`
+      const url = `/user/admin/users/${id}`
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.DELETE,

@@ -12,7 +12,7 @@ export const useVerifyResetCode = () => {
 
   return useMutation({
     mutationFn: async ({ otp }: VerifyEmailValues) => {
-      const url = '/api/verify-reset-email'
+      const url = '/user/verify-reset-email'
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.POST,

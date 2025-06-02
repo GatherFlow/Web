@@ -4,7 +4,7 @@ export const getTotalUsersOptions = () => {
   return queryOptions({
     queryKey: ['users', 'count'],
     queryFn: async () => {
-      const url = '/api/statistics/total-users'
+      const url = '/user/statistics/total-users'
 
       const response = await fetch(url, {
         credentials: 'include'

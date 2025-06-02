@@ -11,7 +11,7 @@ export const useVerifyEmail = () => {
 
   return useMutation({
     mutationFn: async ({ otp }: VerifyEmailValues) => {
-      const url = '/api/verify-email'
+      const url = '/user/verify-email'
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.POST,

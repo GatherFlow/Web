@@ -13,7 +13,7 @@ export const useLogout = () => {
 
   return useMutation({
     mutationFn: async () => {
-      const url = `/api/logout`
+      const url = `/user/logout`
 
       const response = await fetch(url, {
         method: REQUEST_METHODS.DELETE,

@@ -1,6 +1,5 @@
 import { Button } from "@/core/components/ui/button"
 import { Calendar } from "@/core/components/ui/calendar"
-import { ImageDropzoneField } from "@/core/components/ui/dropzone"
 import { Input } from "@/core/components/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/core/components/ui/popover"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/core/components/ui/select"

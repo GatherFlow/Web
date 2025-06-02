@@ -1,13 +1,16 @@
+import { Avatar, AvatarFallback, AvatarImage } from '@/core/components/ui/avatar'
 import { Button } from '@/core/components/ui/button'
 import { Input } from '@/core/components/ui/input'
 import { Label } from '@/core/components/ui/label'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/core/components/ui/tabs'
+import { capitalize } from '@/core/utils'
 import { EditEventForm } from '@/features/events/components/edit-event-form'
 import { EventSettingsForm } from '@/features/events/components/event-settings-event'
 import { SetAlbumForm } from '@/features/events/components/set-album-form'
 import { EventNotFoundError } from '@/features/events/erorrs'
 import { useDeleteEvent } from '@/features/events/mutations/useDeleteEvent'
 import { eventOptions, eventSettiongsOptions } from '@/features/events/queries'
+import { eventMembersOptions } from '@/features/members/queries'
 import { CreateTicketDialog } from '@/features/tickets/components/create-ticket-dialog'
 import { ManageTicketDialog } from '@/features/tickets/components/manage-ticket-dialog'
 import { eventTickets } from '@/features/tickets/queries'
@@ -21,6 +24,7 @@ export const Route = createFileRoute('/dashboard/events/$id')({
     queryClient.ensureQueryData(eventOptions(+id))
     queryClient.ensureQueryData(eventSettiongsOptions(+id))
     queryClient.ensureQueryData(eventTickets(+id))
+    queryClient.ensureQueryData(eventMembersOptions(+id))
   },
   component: RouteComponent,
   errorComponent: EventErrorComponent
@@ -50,6 +54,7 @@ function RouteComponent() {
   const { data: event } = useSuspenseQuery(eventOptions(+id))
   const { data: settings } = useSuspenseQuery(eventSettiongsOptions(+id))
   const { data: tickets } = useSuspenseQuery(eventTickets(+id))
+  const { data: members } = useSuspenseQuery(eventMembersOptions(+id))
 
   const { mutate } = useDeleteEvent()
 
@@ -106,6 +111,23 @@ function RouteComponent() {
               </ManageTicketDialog>
             ))}
           </div>
+        </TabsContent>
+        <TabsContent className="flex flex-col gap-4 pt-4" value="members">
+          {members.data.map((member, index) => (
+            <div key={index} className='inline-flex w-full items-center justify-between gap-2 rounded-lg border border-border p-4'>
+              <div className='inline-flex gap-2 items-center'>
+                <Avatar>
+                  {member.avatar === '/' ? (
+                    <AvatarFallback>{member.first_name[0]}</AvatarFallback>
+                  ) : (
+                    <AvatarImage src={member.avatar} />
+                  )}
+                </Avatar>
+                <p>{member.first_name} {member.last_name}</p>
+              </div>
+              <p className="text-xs text-muted-foreground">{capitalize(member.role)}</p>
+            </div>
+          ))}
         </TabsContent>
         <TabsContent className="flex flex-col gap-4 pt-4" value="settings">
           <EventSettingsForm id={event.data.id} settings={settings.data} />

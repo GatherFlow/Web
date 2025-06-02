@@ -81,4 +81,14 @@ interface Ticket {
   stock: number
 }
 
-export type { BaseUser, HealthStatus, PublicUser, ResetSession, AdminUser, UserPrivacy, LocationValue, Event, EventSettings, Ticket }
+interface Member {
+  id: number,
+  event_id: number
+  user_id: string
+  role: string
+  first_name: string
+  last_name: string
+  avatar: string
+}
+
+export type { BaseUser, HealthStatus, PublicUser, ResetSession, AdminUser, UserPrivacy, LocationValue, Event, EventSettings, Ticket, Member }

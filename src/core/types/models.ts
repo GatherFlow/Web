@@ -53,7 +53,7 @@ interface LocationValue {
 interface Event {
   id: number
   title: string
-  desription: string
+  description: string
   duration: number
   location: string
   format: string

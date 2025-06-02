@@ -25,7 +25,7 @@ export const EditEventForm: React.FC<Props> = ({ event }) => {
     validators: { onSubmit: createEventSchema },
     defaultValues: {
       title: event.title,
-      description: event.desription,
+      description: event.description,
       tags: event.tags,
       startedAt: new Date(event.starting_time * 1000),
       format: event.format,

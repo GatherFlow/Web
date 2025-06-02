@@ -2,8 +2,6 @@ ARG NODE_VERSION=22
 
 FROM node:${NODE_VERSION}-alpine
 
-ARG VITE_API_BASE_URL
-
 WORKDIR /app
 
 RUN npm i -g pnpm

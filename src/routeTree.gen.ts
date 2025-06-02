@@ -18,13 +18,15 @@ import { Route as DashboardIndexImport } from './routes/dashboard/index'
 import { Route as AdminIndexImport } from './routes/admin/index'
 import { Route as DashboardProfileImport } from './routes/dashboard/profile'
 import { Route as DashboardPrivacyImport } from './routes/dashboard/privacy'
-import { Route as DashboardEventsImport } from './routes/dashboard/events'
 import { Route as AdminUsersImport } from './routes/admin/users'
 import { Route as authVerifyEmailImport } from './routes/(auth)/verify-email'
 import { Route as authSignupImport } from './routes/(auth)/signup'
 import { Route as authLoginImport } from './routes/(auth)/login'
 import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-password/route'
+import { Route as DashboardEventsIndexImport } from './routes/dashboard/events/index'
 import { Route as authForgotPasswordIndexImport } from './routes/(auth)/forgot-password/index'
+import { Route as DashboardEventsCreateImport } from './routes/dashboard/events/create'
+import { Route as DashboardEventsIdImport } from './routes/dashboard/events/$id'
 import { Route as authForgotPasswordCodeImport } from './routes/(auth)/forgot-password/code'
 import { Route as authForgotPasswordChangeImport } from './routes/(auth)/forgot-password/change'
 
@@ -72,12 +74,6 @@ const DashboardPrivacyRoute = DashboardPrivacyImport.update({
   getParentRoute: () => DashboardRouteRoute,
 } as any)
 
-const DashboardEventsRoute = DashboardEventsImport.update({
-  id: '/events',
-  path: '/events',
-  getParentRoute: () => DashboardRouteRoute,
-} as any)
-
 const AdminUsersRoute = AdminUsersImport.update({
   id: '/users',
   path: '/users',
@@ -108,10 +104,28 @@ const authForgotPasswordRouteRoute = authForgotPasswordRouteImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const DashboardEventsIndexRoute = DashboardEventsIndexImport.update({
+  id: '/events/',
+  path: '/events/',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+
 const authForgotPasswordIndexRoute = authForgotPasswordIndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => authForgotPasswordRouteRoute,
+} as any)
+
+const DashboardEventsCreateRoute = DashboardEventsCreateImport.update({
+  id: '/events/create',
+  path: '/events/create',
+  getParentRoute: () => DashboardRouteRoute,
+} as any)
+
+const DashboardEventsIdRoute = DashboardEventsIdImport.update({
+  id: '/events/$id',
+  path: '/events/$id',
+  getParentRoute: () => DashboardRouteRoute,
 } as any)
 
 const authForgotPasswordCodeRoute = authForgotPasswordCodeImport.update({
@@ -186,13 +200,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminUsersImport
       parentRoute: typeof AdminRouteImport
     }
-    '/dashboard/events': {
-      id: '/dashboard/events'
-      path: '/events'
-      fullPath: '/dashboard/events'
-      preLoaderRoute: typeof DashboardEventsImport
-      parentRoute: typeof DashboardRouteImport
-    }
     '/dashboard/privacy': {
       id: '/dashboard/privacy'
       path: '/privacy'
@@ -235,12 +242,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authForgotPasswordCodeImport
       parentRoute: typeof authForgotPasswordRouteImport
     }
+    '/dashboard/events/$id': {
+      id: '/dashboard/events/$id'
+      path: '/events/$id'
+      fullPath: '/dashboard/events/$id'
+      preLoaderRoute: typeof DashboardEventsIdImport
+      parentRoute: typeof DashboardRouteImport
+    }
+    '/dashboard/events/create': {
+      id: '/dashboard/events/create'
+      path: '/events/create'
+      fullPath: '/dashboard/events/create'
+      preLoaderRoute: typeof DashboardEventsCreateImport
+      parentRoute: typeof DashboardRouteImport
+    }
     '/(auth)/forgot-password/': {
       id: '/(auth)/forgot-password/'
       path: '/'
       fullPath: '/forgot-password/'
       preLoaderRoute: typeof authForgotPasswordIndexImport
       parentRoute: typeof authForgotPasswordRouteImport
+    }
+    '/dashboard/events/': {
+      id: '/dashboard/events/'
+      path: '/events'
+      fullPath: '/dashboard/events'
+      preLoaderRoute: typeof DashboardEventsIndexImport
+      parentRoute: typeof DashboardRouteImport
     }
   }
 }
@@ -262,17 +290,21 @@ const AdminRouteRouteWithChildren = AdminRouteRoute._addFileChildren(
 )
 
 interface DashboardRouteRouteChildren {
-  DashboardEventsRoute: typeof DashboardEventsRoute
   DashboardPrivacyRoute: typeof DashboardPrivacyRoute
   DashboardProfileRoute: typeof DashboardProfileRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardEventsIdRoute: typeof DashboardEventsIdRoute
+  DashboardEventsCreateRoute: typeof DashboardEventsCreateRoute
+  DashboardEventsIndexRoute: typeof DashboardEventsIndexRoute
 }
 
 const DashboardRouteRouteChildren: DashboardRouteRouteChildren = {
-  DashboardEventsRoute: DashboardEventsRoute,
   DashboardPrivacyRoute: DashboardPrivacyRoute,
   DashboardProfileRoute: DashboardProfileRoute,
   DashboardIndexRoute: DashboardIndexRoute,
+  DashboardEventsIdRoute: DashboardEventsIdRoute,
+  DashboardEventsCreateRoute: DashboardEventsCreateRoute,
+  DashboardEventsIndexRoute: DashboardEventsIndexRoute,
 }
 
 const DashboardRouteRouteWithChildren = DashboardRouteRoute._addFileChildren(
@@ -306,14 +338,16 @@ export interface FileRoutesByFullPath {
   '/signup': typeof authSignupRoute
   '/verify-email': typeof authVerifyEmailRoute
   '/admin/users': typeof AdminUsersRoute
-  '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/forgot-password/change': typeof authForgotPasswordChangeRoute
   '/forgot-password/code': typeof authForgotPasswordCodeRoute
+  '/dashboard/events/$id': typeof DashboardEventsIdRoute
+  '/dashboard/events/create': typeof DashboardEventsCreateRoute
   '/forgot-password/': typeof authForgotPasswordIndexRoute
+  '/dashboard/events': typeof DashboardEventsIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -322,14 +356,16 @@ export interface FileRoutesByTo {
   '/signup': typeof authSignupRoute
   '/verify-email': typeof authVerifyEmailRoute
   '/admin/users': typeof AdminUsersRoute
-  '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/admin': typeof AdminIndexRoute
   '/dashboard': typeof DashboardIndexRoute
   '/forgot-password/change': typeof authForgotPasswordChangeRoute
   '/forgot-password/code': typeof authForgotPasswordCodeRoute
+  '/dashboard/events/$id': typeof DashboardEventsIdRoute
+  '/dashboard/events/create': typeof DashboardEventsCreateRoute
   '/forgot-password': typeof authForgotPasswordIndexRoute
+  '/dashboard/events': typeof DashboardEventsIndexRoute
 }
 
 export interface FileRoutesById {
@@ -342,14 +378,16 @@ export interface FileRoutesById {
   '/(auth)/signup': typeof authSignupRoute
   '/(auth)/verify-email': typeof authVerifyEmailRoute
   '/admin/users': typeof AdminUsersRoute
-  '/dashboard/events': typeof DashboardEventsRoute
   '/dashboard/privacy': typeof DashboardPrivacyRoute
   '/dashboard/profile': typeof DashboardProfileRoute
   '/admin/': typeof AdminIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
   '/(auth)/forgot-password/change': typeof authForgotPasswordChangeRoute
   '/(auth)/forgot-password/code': typeof authForgotPasswordCodeRoute
+  '/dashboard/events/$id': typeof DashboardEventsIdRoute
+  '/dashboard/events/create': typeof DashboardEventsCreateRoute
   '/(auth)/forgot-password/': typeof authForgotPasswordIndexRoute
+  '/dashboard/events/': typeof DashboardEventsIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -363,14 +401,16 @@ export interface FileRouteTypes {
     | '/signup'
     | '/verify-email'
     | '/admin/users'
-    | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
     | '/admin/'
     | '/dashboard/'
     | '/forgot-password/change'
     | '/forgot-password/code'
+    | '/dashboard/events/$id'
+    | '/dashboard/events/create'
     | '/forgot-password/'
+    | '/dashboard/events'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -378,14 +418,16 @@ export interface FileRouteTypes {
     | '/signup'
     | '/verify-email'
     | '/admin/users'
-    | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
     | '/admin'
     | '/dashboard'
     | '/forgot-password/change'
     | '/forgot-password/code'
+    | '/dashboard/events/$id'
+    | '/dashboard/events/create'
     | '/forgot-password'
+    | '/dashboard/events'
   id:
     | '__root__'
     | '/'
@@ -396,14 +438,16 @@ export interface FileRouteTypes {
     | '/(auth)/signup'
     | '/(auth)/verify-email'
     | '/admin/users'
-    | '/dashboard/events'
     | '/dashboard/privacy'
     | '/dashboard/profile'
     | '/admin/'
     | '/dashboard/'
     | '/(auth)/forgot-password/change'
     | '/(auth)/forgot-password/code'
+    | '/dashboard/events/$id'
+    | '/dashboard/events/create'
     | '/(auth)/forgot-password/'
+    | '/dashboard/events/'
   fileRoutesById: FileRoutesById
 }
 
@@ -459,10 +503,12 @@ export const routeTree = rootRoute
     "/dashboard": {
       "filePath": "dashboard/route.tsx",
       "children": [
-        "/dashboard/events",
         "/dashboard/privacy",
         "/dashboard/profile",
-        "/dashboard/"
+        "/dashboard/",
+        "/dashboard/events/$id",
+        "/dashboard/events/create",
+        "/dashboard/events/"
       ]
     },
     "/(auth)/forgot-password": {
@@ -485,10 +531,6 @@ export const routeTree = rootRoute
     "/admin/users": {
       "filePath": "admin/users.tsx",
       "parent": "/admin"
-    },
-    "/dashboard/events": {
-      "filePath": "dashboard/events.tsx",
-      "parent": "/dashboard"
     },
     "/dashboard/privacy": {
       "filePath": "dashboard/privacy.tsx",
@@ -514,9 +556,21 @@ export const routeTree = rootRoute
       "filePath": "(auth)/forgot-password/code.tsx",
       "parent": "/(auth)/forgot-password"
     },
+    "/dashboard/events/$id": {
+      "filePath": "dashboard/events/$id.tsx",
+      "parent": "/dashboard"
+    },
+    "/dashboard/events/create": {
+      "filePath": "dashboard/events/create.tsx",
+      "parent": "/dashboard"
+    },
     "/(auth)/forgot-password/": {
       "filePath": "(auth)/forgot-password/index.tsx",
       "parent": "/(auth)/forgot-password"
+    },
+    "/dashboard/events/": {
+      "filePath": "dashboard/events/index.tsx",
+      "parent": "/dashboard"
     }
   }
 }

@@ -33,11 +33,17 @@ export default defineConfig(({ mode }) => {
       origin: `http://localhost:9091`,
       proxy: {
         '/api': {
-          target: env.VITE_API_BASE_URL,
+          target: 'https://bots.innova.ua/api/user',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
           secure: false,
         },
+        '/events': {
+          target: 'https://bots.innova.ua/api/event',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/events/, ''),
+          secure: false,
+        }
       },
     },
     resolve: {

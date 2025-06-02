@@ -5,6 +5,7 @@ import { useAuthStore } from "./features/auth/stores"
 import { createHead, UnheadProvider } from '@unhead/react/client'
 import { useResetSessionStore } from "./features/auth/stores/session.ts"
 import { ThemeProvider } from "./core/components/theme-provider.tsx"
+import { Toaster } from "./core/components/ui/sonner.tsx"
 
 export const InnerApp = () => {
   const auth = useAuthStore()
@@ -16,6 +17,7 @@ export const InnerApp = () => {
       <UnheadProvider head={head}>
         <ThemeProvider>
           <RouterProvider router={router} context={{ auth, session }} />
+          <Toaster />
         </ThemeProvider>
       </UnheadProvider>
     </TanStackQueryProvider.Provider>

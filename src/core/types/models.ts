@@ -44,4 +44,41 @@ interface UserPrivacy {
   hideAppreciated: boolean
 }
 
-export type { BaseUser, HealthStatus, PublicUser, ResetSession, AdminUser, UserPrivacy }
+interface LocationValue {
+  lat: number
+  lng: number
+  address?: string
+}
+
+interface Event {
+  id: number
+  title: string
+  desription: string
+  duration: number
+  location: string
+  format: string
+  starting_time: number
+  meeting_link: string
+  likes: number
+  bought: number
+  tags: string[]
+  album: string[]
+  tickets: unknown[]
+}
+
+interface EventSettings {
+  is_gathering: boolean
+  is_announced: boolean
+}
+
+interface Ticket {
+  id: number
+  event_id: number,
+  title: string,
+  description: string,
+  price: number,
+  amount: number,
+  stock: number
+}
+
+export type { BaseUser, HealthStatus, PublicUser, ResetSession, AdminUser, UserPrivacy, LocationValue, Event, EventSettings, Ticket }
